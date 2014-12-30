@@ -1,0 +1,29 @@
+ALTER TABLE `paxvila_pax`.`pax_mensalidade`
+DROP COLUMN `id_funcionarios`,
+DROP COLUMN `id_associado`,
+ADD COLUMN `id_associados` INT(11) NOT NULL AFTER `cobrador`,
+ADD COLUMN `id_funcionarios` INT(11) NOT NULL AFTER `id_associados`,
+ADD INDEX `fk_pax_mensalidade_pax_associados1_idx` (`id_associados` ASC),
+ADD INDEX `fk_pax_mensalidade_pax_funcionarios1_idx` (`id_funcionarios` ASC),
+DROP INDEX `fk_pax_mensalidade_pax_funcionarios1_idx` ,
+DROP INDEX `fk_pax_mensalidade_pax_associados1_idx` ;
+
+DROP TABLE IF EXISTS `paxvila_pax`.`acl_roles` ;
+
+DROP TABLE IF EXISTS `paxvila_pax`.`acl_resources` ;
+
+DROP TABLE IF EXISTS `paxvila_pax`.`acl_privileges` ;
+
+ALTER TABLE `paxvila_pax`.`pax_movimento_caixa`
+CHANGE COLUMN `tipo` `tipo` CHAR(1) NULL DEFAULT NULL COMMENT 'D Debitos\nC Cretitos' ,
+ADD COLUMN `lancamento` VARCHAR(45) NULL DEFAULT NULL AFTER `tipo`;
+
+ALTER TABLE `paxvila_pax`.`pax_dependentes`
+DROP FOREIGN KEY `fk_pax_dependentes_pax_associados1`;
+
+ALTER TABLE `paxvila_pax`.`pax_dependentes`
+CHANGE COLUMN `id_associado` `id_associado` INT(11) NULL DEFAULT NULL ,
+DROP INDEX `fk_pax_dependentes_pax_associados1_idx` ;
+
+ALTER TABLE `paxvila_pax`.`pax_urnas`
+DROP COLUMN `cod`;

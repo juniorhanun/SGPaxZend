@@ -1,0 +1,235 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Novo(a) Funcionarios(a)
+        </div>
+    </div>
+    <?php
+    // objeto form contato
+    $form = $this->form;
+    // preparar elementos do formulário
+    $form->prepare();
+    // configurar url formulário
+    $form->setAttribute('action', $this->url('pax-funcionarios/default', array('controller' => 'funcionarios', 'action' => 'inserir')));
+    ?>
+
+    <?php // renderiza html <form> com atributos configurados no objeto ?>
+    <?php echo $this->form()->openTag($form) ?>
+    <div class="panel-body ">
+
+        <div class="container">
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Nome.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('nome'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('nome'));
+                    ?>
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Login.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('login'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('login'));
+                    ?>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Senha.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('senha'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('senha'));
+                    ?>
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>cep.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('cep'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('cep'));
+                    ?>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Estado.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('estado'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('estado'));
+                    ?>
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Cidade.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('cidade'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('cidade'));
+                    ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Endereço.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('endereco'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('endereco'));
+                    ?>
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Rg.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('rg'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('rg'));
+                    ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Cpf.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('cpf'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('cpf'));
+                    ?>
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Comissão.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('comissao'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('comissao'));
+                    ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Admissão.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formInput($form->get('data_adm'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('data_adm'));
+                    ?>
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>status.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?php
+                    // renderiza html input
+                    echo $this->formSelect($form->get('status'));
+
+                    // renderiza elemento de erro
+                    echo $this->formElementErrors()
+                        ->setMessageOpenFormat("<small class='text-danger'>")
+                        ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                        ->setMessageCloseString("</small>")
+                        ->render($form->get('status'));
+                    ?>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+
+    </div>
+    <div class="panel-footer">
+        <button type="submit" class="btn btn-primary">Salvar Funcionarios(a)</button>
+        <a href="<?php echo $this->url('pax-funcionarios'); ?>" class="btn btn-default">Voltar</a>
+    </div>
+
+    <?php // renderiza html </form> ?>
+    <?php echo $this->form()->closeTag() ?>
+</div>

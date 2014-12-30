@@ -1,0 +1,81 @@
+<?php
+
+namespace Pax\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PaxDependentes
+ *
+ * @ORM\Table(name="pax_dependentes")
+ * @ORM\Entity
+ */
+class PaxDependentes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_associado", type="integer", nullable=true)
+     */
+    private $idAssociado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=45, nullable=true)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=45, nullable=true)
+     */
+    private $cpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rg", type="string", length=45, nullable=true)
+     */
+    private $rg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=45, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=45, nullable=true)
+     */
+    private $tipo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_obito", type="datetime", nullable=true)
+     */
+    private $dataObito;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_nascimento", type="datetime", nullable=true)
+     */
+    private $dataNascimento;
+
+
+}

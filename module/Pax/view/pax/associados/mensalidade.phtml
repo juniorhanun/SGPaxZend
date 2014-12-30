@@ -1,0 +1,73 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <?php
+            /**
+             * @var $assoc \Pax\Entity\PaxAssociados
+             */
+
+            foreach ($this->associado as $assoc): ?>
+            Mensalidades do Associado <?php echo $assoc->getNome(); ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <ul class="listaMensalidades">
+            <?php
+            /**
+             * @var $entity \Pax\Entity\PaxMensalidade
+             * @var $ano \Pax\Entity\PaxMensalidade
+             */
+            //var_dump($this->anos);die;
+            foreach ($this->anos as $ano):?>
+                <li>
+
+                <table border="1">
+                    <tr>
+                        <td><b>Ano de Referencia.: <?php echo $ano->getAnoReferencia(); ?></b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php
+                            foreach ($this->data as $entity):
+                                //var_dump($ano->getAnoReferencia());die;
+                                if($ano->getAnoReferencia() == $entity->getAnoReferencia()):
+                            ?>
+                                    <table>
+                                        <tr>
+                                            <td><b>Mes de Referencia.:</b></td>
+                                            <td><?php echo $entity->getMesReferencia(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dia Pagamento.:</td>
+                                            <td><?php echo $entity->getDataPagamento()->format('d/m/Y'); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Valor Mensalidade.:</td>
+                                            <td>R$ <?php echo $entity->getValorMensalidade(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Valor Pago.:</td>
+                                            <td>R$ <?php echo $entity->getValorPago(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td> &nbsp</td>
+                                        </tr>
+                                    </table>
+                           <?php endif;
+                           endforeach; ?>
+                        </td>
+                    </tr>
+                </table>
+            <?php endforeach; ?>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <a href="<?php echo $this->url('pax-associados/default')?>" class="btn btn-default btn-sm">Voltar</a>
+    </div>
+</div>

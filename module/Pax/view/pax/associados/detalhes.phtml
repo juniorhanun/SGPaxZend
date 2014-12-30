@@ -1,0 +1,450 @@
+<?php
+/**
+ * @var $entity \Pax\Entity\PaxAssociados
+ */
+if ($this->data):
+
+    foreach ($this->data as $entity): //var_dump($entity);die; ?>
+
+        <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                Detalhes do(a) <?=$entity->getNome();?>
+            </div>
+        </div>
+
+        <div class="panel-body ">
+
+        <div class="container">
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Cód Ass.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getId() ?>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Cidade Asso.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getCidadeAsso() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Nome.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getNome() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Contrato.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getContrato() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Data Contrato.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=($entity->getDataContrato()) ? $entity->getDataContrato()->format("d/m/Y") : ";" ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Data Pedido.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=($entity->getDataPedido()) ? $entity->getDataPedido()->format("d/m/Y") : ";" ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Data Nascimento.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=($entity->getDataNascimento()) ? $entity->getDataNascimento()->format("d/m/Y") : ";" ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Dia Pagemento.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getDiaPagemento() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Serie.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getSerie() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Porcento.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getPorcento() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Viajem.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getViajem() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Estado Civil.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getEstadoCivil() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Profissão.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getProfissao() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Religião.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getReligiao() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Cep.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getCep() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Estado.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getEstado() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Cidade.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getCidade() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Bairro.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getBairro() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Endereço.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getEndereco() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Endereço Cobrança.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getEnderecoCobranca() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Celular.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getCelular() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Telefone.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getTelefone() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Local.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getLocal() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Pai.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getPai() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Condiação Pai.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getStatusPai() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Mãe.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getMae() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Condiação Mãe.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getStatusMae() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Conjugue.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getConjugue() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Condiação Conjugue.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getStatusConjugue() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Cpf.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getCpf() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Rg.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getRg() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Status.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getStatus() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Translado.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getTranslado() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Observação.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getObservacao() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <?php /*
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Condicao.:</label>
+                    <div class='col-lg-4  col-md-4'>
+                        <?=$entity->getCondicao() ?>
+                    </div>
+            </div>
+        </div>
+        */ ?>
+
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Vendedor.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getVendedor() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Tipo Contrato.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getTipoContrato() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Nome Sogra.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getNomeSogra() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Condiação Sogra.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getStatusSogra() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Nome Sogro.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getNomeSogro() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Condiação Sogro.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getStatusSogro() ?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='row'>
+            <div class='form-group'>
+                <label for='inputTelefonePrincipal' class='col-md-3 control-label label_right'>Motivo Cancelamento.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <?=$entity->getMotivoCancelamento() ?>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        </div>
+    <?php endforeach; ?>
+    <div class="panel-footer">
+        <a href="<?php echo $this->url('pax-associados'); ?>" class="btn btn-default">Voltar</a>
+    </div>
+    </div>
+<?php else: ?>
+    <p>Nem um Registro foi Encontrado</p>
+<?php endif;  ?>

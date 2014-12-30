@@ -1,0 +1,329 @@
+<?php
+
+namespace Pax\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PaxAssociados
+ *
+ * @ORM\Table(name="pax_associados", indexes={@ORM\Index(name="fk_pax_associados_pax_funcionarios1_idx", columns={"id_funcionarios"})})
+ * @ORM\Entity
+ */
+class PaxAssociados
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cidade_asso", type="string", length=45, nullable=true)
+     */
+    private $cidadeAsso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=45, nullable=true)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contrato", type="string", length=45, nullable=true)
+     */
+    private $contrato;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_contrato", type="datetime", nullable=true)
+     */
+    private $dataContrato;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_pedido", type="datetime", nullable=true)
+     */
+    private $dataPedido;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_nascimento", type="datetime", nullable=true)
+     */
+    private $dataNascimento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dia_pagemento", type="string", length=2, nullable=true)
+     */
+    private $diaPagemento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serie", type="string", length=45, nullable=true)
+     */
+    private $serie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="porcento", type="string", length=10, nullable=true)
+     */
+    private $porcento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="viajem", type="string", length=3, nullable=true)
+     */
+    private $viajem;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado_civil", type="string", length=10, nullable=true)
+     */
+    private $estadoCivil;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profissao", type="string", length=45, nullable=true)
+     */
+    private $profissao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="religiao", type="string", length=45, nullable=true)
+     */
+    private $religiao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cep", type="string", length=11, nullable=true)
+     */
+    private $cep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=2, nullable=true)
+     */
+    private $estado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cidade", type="string", length=100, nullable=true)
+     */
+    private $cidade;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bairro", type="string", length=100, nullable=true)
+     */
+    private $bairro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco", type="string", length=100, nullable=true)
+     */
+    private $endereco;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco_cobranca", type="string", length=100, nullable=true)
+     */
+    private $enderecoCobranca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celular", type="string", length=15, nullable=true)
+     */
+    private $celular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone", type="string", length=15, nullable=true)
+     */
+    private $telefone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="local", type="string", length=100, nullable=true)
+     */
+    private $local;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pai", type="string", length=100, nullable=true)
+     */
+    private $pai;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status_pai", type="string", length=45, nullable=true)
+     */
+    private $statusPai;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mae", type="string", length=100, nullable=true)
+     */
+    private $mae;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status_mae", type="string", length=45, nullable=true)
+     */
+    private $statusMae;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="conjugue", type="string", length=100, nullable=true)
+     */
+    private $conjugue;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status_conjugue", type="string", length=45, nullable=true)
+     */
+    private $statusConjugue;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=15, nullable=true)
+     */
+    private $cpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rg", type="string", length=15, nullable=true)
+     */
+    private $rg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=15, nullable=true)
+     */
+    private $status = 'ATIVO';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="translado", type="string", length=100, nullable=true)
+     */
+    private $translado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacao", type="text", nullable=true)
+     */
+    private $observacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condicao", type="string", length=45, nullable=true)
+     */
+    private $condicao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vendedor", type="string", length=45, nullable=true)
+     */
+    private $vendedor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_contrato", type="string", length=45, nullable=true)
+     */
+    private $tipoContrato;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_sogra", type="string", length=45, nullable=true)
+     */
+    private $nomeSogra;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status_sogra", type="string", length=45, nullable=true)
+     */
+    private $statusSogra;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_sogro", type="string", length=45, nullable=true)
+     */
+    private $nomeSogro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status_sogro", type="string", length=45, nullable=true)
+     */
+    private $statusSogro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="motivo_cancelamento", type="text", nullable=true)
+     */
+    private $motivoCancelamento;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tipo_caixao", type="integer", nullable=true)
+     */
+    private $tipoCaixao;
+
+    /**
+     * @var \Pax\Entity\PaxFuncionarios
+     *
+     * @ORM\ManyToOne(targetEntity="Pax\Entity\PaxFuncionarios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_funcionarios", referencedColumnName="id")
+     * })
+     */
+    private $idFuncionarios;
+
+
+}

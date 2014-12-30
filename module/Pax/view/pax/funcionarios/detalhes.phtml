@@ -1,0 +1,130 @@
+<?php
+/**
+ * @var $entity \Pax\Entity\PaxFuncionarios
+ */
+if ($this->data):
+
+    foreach ($this->data as $entity): //var_dump($entity);die; ?>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                Detalhes do(a) <?=$entity->getNome();?>
+            </div>
+        </div>
+
+        <div class="panel-body ">
+
+            <div class="container">
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Nome.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getNome();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Login.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getLogin();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Cep.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getCep();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Estado.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getEstado();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Cidade.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getCidade();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Endereço.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getEndereco();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Cpf.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getCpf();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Rg.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getRg();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Comissão.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getComissao();?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Data Adminsão.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=($entity->getDataAdm()) ? $entity->getDataAdm()->format("d/m/Y") : "";?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group'>
+                        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Rg.:</label>
+                        <div class='col-lg-8  col-md-8'>
+                            <?=$entity->getRg();?>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    <?php endforeach; ?>
+        <div class="panel-footer">
+            <a href="<?php echo $this->url('pax-funcionarios'); ?>" class="btn btn-default">Voltar</a>
+        </div>
+        </div>
+<?php else: ?>
+    <p>Nem um Registro foi Encontrado</p>
+<?php endif;  ?>

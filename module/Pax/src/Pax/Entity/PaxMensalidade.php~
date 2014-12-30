@@ -1,0 +1,88 @@
+<?php
+
+namespace Pax\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PaxMensalidade
+ *
+ * @ORM\Table(name="pax_mensalidade", indexes={@ORM\Index(name="fk_pax_mensalidade_pax_associados1_idx", columns={"id_associado"}), @ORM\Index(name="fk_pax_mensalidade_pax_funcionarios1_idx", columns={"id_funcionarios"})})
+ * @ORM\Entity
+ */
+class PaxMensalidade
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_associado", type="integer", nullable=false)
+     */
+    private $idAssociado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_funcionarios", type="integer", nullable=false)
+     */
+    private $idFuncionarios;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_pagamento", type="datetime", nullable=true)
+     */
+    private $dataPagamento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mes_referencia", type="string", length=2, nullable=true)
+     */
+    private $mesReferencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ano_referencia", type="string", length=4, nullable=true)
+     */
+    private $anoReferencia;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_mensalidade", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorMensalidade;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="paga", type="integer", nullable=true)
+     */
+    private $paga = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_pago", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorPago;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="diferenca", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $diferenca;
+
+
+}

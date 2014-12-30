@@ -1,0 +1,69 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Lista Movimento de Caixa
+        </div>
+    </div>
+</div>
+
+<div class="topo-table">
+    <form class="form-inline" method="post" role="form" action="<?php echo $this->url('pax-associados/default', array('action' => 'pesquisa'))?>">
+        <div class='row'>
+            <div class="form-group">
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Inicio.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <input type="date"class="form-control" name="dataInicial">
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Fim.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <input type="date"class="form-control" name="dataFinal">
+                </div>
+                <div class='col-lg-1  col-md-1'>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="corpo-table">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Data Movimento</th>
+            <th>Nome</th>
+            <th>Decriminação</th>
+            <th>Valor Lançado</th>
+            <th>Critido / Debito</th>
+            <th>Tipo Lançamento</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php
+        /**
+         * @var $entity \Pax\Entity\PaxMovimentoCaixa
+         */
+        ?>
+        <?php  if ($this->data): ?>
+            <?php foreach ($this->data as $entity): ?>
+                <tr>
+                    <td><?php echo $entity->getId(); ?></td>
+                    <td><?php echo ($entity->getDataMovimento()) ? $entity->getDataMovimento()->format('d/m/Y') : ""; ?></td>
+                    <td><?php echo $entity->getCredor(); ?></td>
+                    <td><?php echo $entity->getDiscriminacao(); ?></td>
+                    <td><?php echo $entity->getValorLancado() ?></td>
+                    <td><?php echo ($entity->getTipo() == 'D') ? "Debito" : "Cretito"; ?></td>
+                    <td><?php echo $entity->getLancamento(); ?></td>
+               </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nem um Registro foi Encontrado</p>
+        <?php endif;  ?>
+        </tbody>
+    </table>

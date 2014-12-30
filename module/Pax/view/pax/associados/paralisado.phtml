@@ -1,0 +1,127 @@
+<script>
+    jQuery(document).ready(function(){
+        $( "#project" ).combogrid({
+            url: '<?php echo $this->url('pax-associados/default', array('action' => 'pesquisas'))?>',
+            debug:true,
+            //replaceNull: true,
+            colModel: [{'columnName':'id','width':'10','label':'Id'}, {'columnName':'nome','width':'60','label':'Nome'},{'columnName':'contrato','width':'30','label':'Contrato'}],
+            select: function( event, ui ) {
+
+                $( "#project" ).val( ui.item.nome );
+                return false;
+            }
+        });
+    });
+</script>
+<div class="topo-table">
+    <a href="<?php echo $this->url('pax-associados/default', array('action' => 'inserir'))?>" class="btn btn-success" title="Novo"><span class="glyphicon glyphicon-plus"></span></a>
+
+    <form class="form-inline pull-right" method="post" role="form" action="<?php echo $this->url('pax-associados/default', array('action' => 'pesquisa'))?>">
+        <div class="form-group">
+            <label class="sr-only" for="localizar">Buscar...</label>
+            <input type="search" name="localizar" class="form-control" id="project" placeholder="Bucar...">
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+</div>
+
+<br />
+
+<div class="corpo-table">
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>De</th>
+            <th>Ed</th>
+            <th>PG</th>
+            <th>Dep</th>
+            <th>Ex</th>
+        </tr>
+        <tr>
+            <th>Detalhes</th>
+            <th>Editar</th>
+            <th>Pagamentos</th>
+            <th>Dependetes</th>
+            <th>Excluir</th>
+        </tr>
+    </table>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Lista de Associados Paralisados
+        </div>
+    </div>
+</div>
+
+<div class="corpo-table">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Contrato</th>
+            <th>Serie</th>
+            <th>Data Contrato</th>
+            <th>Condição</th>
+            <th>Status</th>
+            <th>De</th>
+            <th>Ed</th>
+            <th>PG</th>
+            <th>Dep</th>
+            <th>Ex</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php
+        /**
+         * @var $entity \Pax\Entity\PaxAssociados
+         */
+        ?>
+        <?php  if ($this->data): ?>
+            <?php foreach ($this->data as $entity): ?>
+                <tr>
+                    <td><?php echo $entity->getCodAssociado(); ?></td>
+                    <td><?php echo $entity->getNome(); ?></td>
+                    <td><?php echo $entity->getContrato(); ?></td>
+                    <td><?php echo $entity->getSerie(); ?></td>
+                    <td><?php echo $entity->getDataContrato()->format('d/m/Y'); ?></td>
+                    <td><?php //echo $entity->getMensalidade($entity->getCodAssociado()); ?></td>
+                    <td><?php echo $entity->getStatus(); ?></td>
+                    <td><a class="btn btn-xs btn-info" title="Detalhes" href="<?php echo $this->url('pax-associados/default', array('action' => 'detalhes', 'id' => $entity->getId(),))?>"><span class="glyphicon glyphicon-new-window"></span></a></td>
+                    <td><a class="btn btn-xs btn-warning" title="Editar" href="<?php echo $this->url('pax-associados/default', array('action' => 'editar', 'id' => $entity->getId(),))?>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a class="btn btn-xs btn-success" title="Pagamentos" href="<?php echo $this->url('pax-associados/default', array('action' => 'mensalidade', 'id' => $entity->getCodAssociado(),))?>"><span class="glyphicon glyphicon-wrench"></span></a></td>
+                    <td><a class="btn btn-xs btn-success" title="Dependetes" href="<?php echo $this->url('pax-associados/default', array('action' => 'dependentes', 'id' => $entity->getCodAssociado(),))?>"><span class="glyphicon glyphicon-user"></span></a></td>
+                    <td><a class="btn btn-xs btn-danger" title="Deletar" href="<?php echo $this->url('pax-associados/default', array("action" => "excluir", "id" => $entity->getId(),)); ?>"><span class="glyphicon glyphicon-floppy-remove"></span></a></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nem um Registro foi Encontrado</p>
+        <?php endif;  ?>
+        </tbody>
+    </table>
+
+    <?php echo $this->paginationControl($this->data,'Sliding','partials/paginator', array('router' => 'pax-associados/paginator')); ?>
+
+
+    <?php $this->headScript()->captureStart(); ?>
+    $(function(){
+    // variável para conter a url deletar
+    var url_deletar     = '<?php echo $this->url('pax-associados/default', array("action" => "excluir")); ?>' + '/';
+
+    // qualquer link que tiver a url deletar vai sofrer um evento quando for clicada
+    $("a[href*='" + url_deletar + "']").click(function (event) {
+    // variável contendo o id referente ao botão clicado
+    var admin_id  = $(this).attr('href').split(url_deletar).pop();
+    // variável contendo mensagem da janela
+    var mensagem = "Deseja realmente apagar o Associado com ID " + admin_id + "?";
+    // variável com resposta da mensagem colocada na janela
+    var confirmacao = confirm(mensagem);
+
+    // se a confirmação for false o fluxo é interrompido
+    if (!confirmacao)
+    // elimar o evendo do botão clicado
+    event.preventDefault();
+    });
+    });
+<?php $this->headScript()->captureEnd(); ?>

@@ -1,0 +1,52 @@
+Criação de Entidade
+Pax
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxFuncionarios" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxAssociados" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxDependentes" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxEmpresas" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxMaterial" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxMensalidade" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxMoedas" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxMovimentoCaixa" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxNotasFiscais" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxObitos" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxObitosDespesa" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxServicos" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxUrnas" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxCancelamento" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+
+
+
+Geraçãodos Gets and Sets
+Pax
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxFuncionarios" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxAssociados" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxDependentes" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxEmpresas" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxMaterial" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxMensalidade" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxMoedas" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxMovimentoCaixa" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxNotasFiscais" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxObitos" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxObitosDespesa" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxServicos" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxUrnas" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxCancelamento" --generate-annotations="true" --generate-methods="true" module/Pax/src
+
+Criação dos Repositorios
+Pax
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxFuncionarios" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxAssociados" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxDependentes" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxEmpresas" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxMaterial" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxMensalidade" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxMoedas" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxMovimentoCaixa" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxNotasFiscais" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxObitos" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxObitosDespesa" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxServicos" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxUrnas" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxCancelamento" module/Pax/src/

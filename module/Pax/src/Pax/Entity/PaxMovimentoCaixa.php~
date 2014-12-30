@@ -1,0 +1,67 @@
+<?php
+
+namespace Pax\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PaxMovimentoCaixa
+ *
+ * @ORM\Table(name="pax_movimento_caixa")
+ * @ORM\Entity
+ */
+class PaxMovimentoCaixa
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_movimento", type="datetime", nullable=true)
+     */
+    private $dataMovimento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="credor", type="string", length=45, nullable=true)
+     */
+    private $credor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="discriminacao", type="string", length=250, nullable=true)
+     */
+    private $discriminacao;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_lancado", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorLancado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=1, nullable=true)
+     */
+    private $tipo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lancamento", type="string", length=45, nullable=true)
+     */
+    private $lancamento;
+
+
+}

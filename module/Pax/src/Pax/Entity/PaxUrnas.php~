@@ -1,0 +1,53 @@
+<?php
+
+namespace Pax\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PaxUrnas
+ *
+ * @ORM\Table(name="pax_urnas")
+ * @ORM\Entity
+ */
+class PaxUrnas
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao", type="string", length=100, nullable=true)
+     */
+    private $descricao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="saldo", type="integer", nullable=true)
+     */
+    private $saldo;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="compra", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $compra;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="venda", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $venda;
+
+
+}

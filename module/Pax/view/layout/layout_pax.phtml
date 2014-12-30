@@ -1,0 +1,111 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->headTitle('App - Gerenciador de Pax ') ?>
+
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+        ->prependStylesheet($this->basePath() . '/css/style.css')
+        ->prependStylesheet($this->basePath() . '/resources/css/smoothness/jquery.ui.combogrid.css')
+        ->prependStylesheet($this->basePath() . '/resources/css/smoothness/jquery-ui-1.10.1.custom.css')
+        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+
+    <!-- Scripts -->
+    <?php echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/jquery.ui.combogrid-1.6.3.js')
+        ->prependFile($this->basePath() . '/js/inputmask-plugin.js')
+        ->prependFile($this->basePath() . '/js/jquery.autocomplete.js')
+        ->prependFile($this->basePath() . '/js/scripts.js')
+        ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+        ->prependFile($this->basePath() . '/js/jquery-ui-1.10.1.custom.min.js')
+        ->prependFile($this->basePath() . '/js/jquery-1.9.1.min.js')
+        ->prependFile($this->basePath() . '/js/jquery.min.js')
+        ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+        ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
+    ; ?>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Sisdeve') ?></a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <?php // if($this->UserIdentity("Pax")): ?>
+                <li <?php echo $this->menuAtivo($this->url('pax')); ?>><a href="<?php echo $this->url('pax') ?>"><?php echo $this->translate('Home') ?></a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Associados <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li <?php echo $this->menuAtivo($this->url('pax-associados')); ?>><a href="<?php echo $this->url('pax-associados') ?>"><?php echo $this->translate('Associados') ?></a></li>
+                        <li class="divider"></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-asso-cancelado')); ?>><a href="<?php echo $this->url('pax-asso-cancelado') ?>"><?php echo $this->translate('Cancelados') ?></a></li>
+                        <li class="divider"></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-asso-paralisado')); ?>><a href="<?php echo $this->url('pax-asso-paralisado') ?>"><?php echo $this->translate('Paralisado') ?></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-cancelamento')); ?>><a href="<?php echo $this->url('pax-cancelamento') ?>"><?php echo $this->translate('Cancelados') ?></a></li>
+                        <li class="divider"></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-empresas')); ?>><a href="<?php echo $this->url('pax-empresas') ?>"><?php echo $this->translate('Empresas') ?></a></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-funcionarios')); ?>><a href="<?php echo $this->url('pax-funcionarios') ?>"><?php echo $this->translate('Funcionarios') ?></a></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-obitos')); ?>><a href="<?php echo $this->url('pax-obitos') ?>"><?php echo $this->translate('Obitos') ?></a></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-moedas')); ?>><a href="<?php echo $this->url('pax-moedas') ?>"><?php echo $this->translate('Moedas') ?></a></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-urnas')); ?>><a href="<?php echo $this->url('pax-urnas') ?>"><?php echo $this->translate('Urnas') ?></a></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-material')); ?>><a href="<?php echo $this->url('pax-material') ?>"><?php echo $this->translate('Material') ?></a></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-servicos')); ?>><a href="<?php echo $this->url('pax-servicos') ?>"><?php echo $this->translate('Servicos') ?></a></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-notas')); ?>><a href="<?php echo $this->url('pax-notas') ?>"><?php echo $this->translate('Notas') ?></a></li>
+
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mensalidades <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li <?php echo $this->menuAtivo($this->url('pax-grupo')); ?>><a href="<?php echo $this->url('pax-grupo') ?>"><?php echo $this->translate('Grupo') ?></a></li>
+                        <li class="divider"></li>
+
+                    </ul>
+                </li>
+                <li <?php echo $this->menuAtivo($this->url('pax-backup')); ?>><a href="<?php echo $this->url('pax-backup') ?>"><?php echo $this->translate('Backup') ?></a></li>
+                <li <?php echo $this->menuAtivo($this->url('pax-move-caixa')); ?>><a href="<?php echo $this->url('pax-move-caixa') ?>"><?php echo $this->translate('Movimento Caixa') ?></a></li>
+                <li <?php echo $this->menuAtivo($this->url('pax-logout')); ?>><a href="<?php echo $this->url('pax-logout') ?>"><?php echo 'Sair' ?></a></li>
+
+                <?php /*
+                        else:
+                            ?>
+                            <li <?php echo $this->menuAtivo($this->url('pax-auth')); ?>><a href="<?php echo $this->url('pax-auth') ?>"><?php echo 'Login' ?></a></li>
+                        <?php endif; */ ?>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container">
+    <?php echo $this->message(); ?><br>
+    <?php echo $this->content; ?>
+    <hr>
+    <footer>
+        <p>&copy; 2010 - <?php echo date('Y') ?> by <a href="http://www.sisdeve.com.br" target= "_blank"> <span class="zf-green">Sisdeve - Sistema em Desenvolvimento.</span> </a> <?php echo $this->translate('All rights reserved.') ?></p>
+    </footer>
+</div> <!-- /container -->
+<?php echo $this->inlineScript() ?>
+</body>
+</html>
