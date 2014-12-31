@@ -1,0 +1,126 @@
+<?php
+
+namespace Pax\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PaxObitosDespesa
+ *
+ * @ORM\Table(name="pax_obitos_despesa", indexes={@ORM\Index(name="fk_pax_obitos_despesa_pax_obitos1_idx", columns={"id_obitos"})})
+ * @ORM\Entity
+ */
+class PaxObitosDespesa
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sepulta", type="string", length=45, nullable=true)
+     */
+    private $sepulta;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_sep", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorSep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="paramento", type="string", length=45, nullable=true)
+     */
+    private $paramento;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_par", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorPar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ornamento", type="string", length=45, nullable=true)
+     */
+    private $ornamento;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_orn", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorOrn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="velas", type="string", length=45, nullable=true)
+     */
+    private $velas;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_vela", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorVela;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="veu", type="string", length=45, nullable=true)
+     */
+    private $veu;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_veu", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorVeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nota_fal", type="string", length=45, nullable=true)
+     */
+    private $notaFal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_nota", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorNota;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor_servico", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $valorServico;
+
+    /**
+     * @var \Pax\Entity\PaxObitos
+     *
+     * @ORM\ManyToOne(targetEntity="Pax\Entity\PaxObitos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_obitos", referencedColumnName="id")
+     * })
+     */
+    private $idObitos;
+
+
+}

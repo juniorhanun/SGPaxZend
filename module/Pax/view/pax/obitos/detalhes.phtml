@@ -1,0 +1,168 @@
+<div class="topo-table">
+    <a href="<?php echo $this->url('pax-obitos/default')?>" class="btn btn-success" title="Novo">Voltar</a>
+
+</div>
+
+<?php
+/**
+ * @var $entity \Pax\Entity\PaxObitos
+ * @var $despesas \Pax\Entity\PaxObitosDespesa
+ */
+if ($this->data):
+
+    foreach ($this->data as $entity): ?>
+
+        <h3>Detalhes do Associado: <?=$entity->getNome();?> </h3>
+
+        <table>
+            <tr>
+                <td class="textRigth"><b>Código.:</b></td>
+                <td><?=$entity->getCodigoAss();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Nome.:</b></td>
+                <td><?=$entity->getNome();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Contrato.:</b></td>
+                <td><?=$entity->getContrato();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Data do Obitos.:</b></td>
+                <td><?=($entity->getDataObito()) ? $entity->getDataObito()->format('d/m/Y') : "";?></td>
+                <?php /*<td><?=$this->dateFormat($entity->getDataPedido(), IntlDateFormatter::FULL);?></td>*/ ?>
+
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Situação.:</b></td>
+                <td><?=$entity->getSituacao();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Velorio.:</b></td>
+                <td><?=$entity->getVelorio();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Tipo de Pagamento.:</b></td>
+                <td><?=$entity->getTipoPagamento();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Cidade.:</b></td>
+                <td><?=$entity->getCidade();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Translado.:</b></td>
+                <td><?=$entity->getTranslado();?></td>
+                <?php /*<td><?=$this->dateFormat($entity->getDiaPagemento(), IntlDateFormatter::FULL);?></td>*/ ?>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Responsavel.:</b></td>
+                <td><?=$entity->getResponsavel();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Data Pagamento.:</b></td>
+                <td><?=$entity->getDataPagamento()->format('d/m/Y');?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Cód Urna.:</b></td>
+                <td><?=$entity->getCodUrna();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Valor da Urna.:</b></td>
+                <td><?=$entity->getValorUrna();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Diferença de Urna.:</b></td>
+                <td><?=$entity->getDiferencaUrna();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Atendente.:</b></td>
+                <td><?=$entity->getAtendente();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Horario do Sepultamento.:</b></td>
+                <td><?=$entity->getHorarioSepultamento();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Descrição.:</b></td>
+                <td><?=$entity->getDescricao();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Valor Translado.:</b></td>
+                <td><?=$entity->getValorTran();?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Data Velorio.:</b></td>
+                <td><?=$entity->getDataVelorio()->format('d/m/Y');?></td>
+            </tr>
+            <tr>
+                <td class="textRigth"><b>Valor Total.:</b></td>
+                <td><?=$entity->getValorTotal();?></td>
+            </tr>
+        </table>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>Nem um Registro foi Encontrado</p>
+<?php endif;  ?>
+<table>
+    <?php
+
+    if ($this->despesas):
+
+    foreach ($this->despesas as $despesas): ?>
+        <tr>
+            <td class='textRigth'><b>Sepulta .:</b></td>
+            <td><?=$despesas->getSepulta();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Valor Sepultura .:</b></td>
+            <td><?=$despesas->getValorSep();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Paramento .:</b></td>
+            <td><?=$despesas->getParamento();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Valor Paramento .:</b></td>
+            <td><?=$despesas->getParamento();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Ornamento .:</b></td>
+            <td><?=$despesas->getOrnamento();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Valor Ornamento .:</b></td>
+            <td><?=$despesas->getOrnamento();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Velas .:</b></td>
+            <td><?=$despesas->getVelas();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Valor Vela .:</b></td>
+            <td><?=$despesas->getValorVela();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Veu .:</b></td>
+            <td><?=$despesas->getVeu();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Valor Veu .:</b></td>
+            <td><?=$despesas->getValorVeu();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Nota Falecimento .:</b></td>
+            <td><?=$despesas->getNotaFal();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Valor Nota .:</b></td>
+            <td><?=$despesas->getValorNota();?></td>
+        </tr>
+        <tr>
+            <td class='textRigth'><b>Valor Serviso .:</b></td>
+            <td><?=$despesas->getValorSer();?></td>
+        </tr></pre>
+    <?php endforeach; ?>
+    <?php else: ?>
+        <p>Nem um Registro foi Encontrado</p>
+    <?php endif;  ?>
+</table>

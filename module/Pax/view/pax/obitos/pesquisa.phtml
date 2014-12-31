@@ -56,12 +56,12 @@
                     <td><?php echo $entity->getResponsavel(); ?></td>
                     <td><?php echo $entity->getCidade(); ?></td>
                     <td>R$ <?php echo $entity->getValorTotal(); ?></td>
-                    <td><?php echo ($entity->getDataObito()) ? $entity->getDataObito()->format('d/m/Y') : ""; ?></td>
+                    <td><?php echo $entity->getDataObito()->format('d/m/Y'); ?></td>
                     <td colspan="2">
                         <a class="btn btn-xs btn-info" title="Detalhes" href="<?php echo $this->url('pax-obitos/default', array('action' => 'detalhes', 'id' => $entity->getId(),))?>"><span class="glyphicon glyphicon-new-window"></span></a>
                         <a class="btn btn-xs btn-success" title="Despesas" href="<?php echo $this->url('pax-obitos/default', array('action' => 'despesas', 'id' => $entity->getId(),))?>"><span class="glyphicon glyphicon-remove-sign"></span></a>
                         <a class="btn btn-xs btn-warning" title="Editar" href="<?php echo $this->url('pax-obitos/default', array('action' => 'editar', 'id' => $entity->getId(),))?>"><span class="glyphicon glyphicon-edit"></span></a>
-
+                        <a class="btn btn-xs btn-danger" title="Deletar" href="<?php echo $this->url('pax-obitos/default', array("action" => "excluir", "id" => $entity->getId(),)); ?>"><span class="glyphicon glyphicon-floppy-remove"></span></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -71,27 +71,27 @@
         </tbody>
     </table>
 
-<?php echo $this->paginationControl($this->data,'Sliding','partials/paginator', array('router' => 'pax-obitos/paginator')); ?>
+    <?php echo $this->paginationControl($this->data,'Sliding','partials/paginator', array('router' => 'pax-obitos/paginator')); ?>
 
 
-<?php $this->headScript()->captureStart(); ?>
-$(function(){
-// variável para conter a url deletar
-var url_deletar     = '<?php echo $this->url('pax-obitos/default', array("action" => "excluir")); ?>' + '/';
+    <?php $this->headScript()->captureStart(); ?>
+    $(function(){
+    // variável para conter a url deletar
+    var url_deletar     = '<?php echo $this->url('pax-obitos/default', array("action" => "excluir")); ?>' + '/';
 
-// qualquer link que tiver a url deletar vai sofrer um evento quando for clicada
-$("a[href*='" + url_deletar + "']").click(function (event) {
-// variável contendo o id referente ao botão clicado
-var admin_id  = $(this).attr('href').split(url_deletar).pop();
-// variável contendo mensagem da janela
-var mensagem = "Deseja realmente apagar o Administrador com ID " + admin_id + "?";
-// variável com resposta da mensagem colocada na janela
-var confirmacao = confirm(mensagem);
+    // qualquer link que tiver a url deletar vai sofrer um evento quando for clicada
+    $("a[href*='" + url_deletar + "']").click(function (event) {
+    // variável contendo o id referente ao botão clicado
+    var admin_id  = $(this).attr('href').split(url_deletar).pop();
+    // variável contendo mensagem da janela
+    var mensagem = "Deseja realmente apagar o Administrador com ID " + admin_id + "?";
+    // variável com resposta da mensagem colocada na janela
+    var confirmacao = confirm(mensagem);
 
-// se a confirmação for false o fluxo é interrompido
-if (!confirmacao)
-// elimar o evendo do botão clicado
-event.preventDefault();
-});
-});
+    // se a confirmação for false o fluxo é interrompido
+    if (!confirmacao)
+    // elimar o evendo do botão clicado
+    event.preventDefault();
+    });
+    });
 <?php $this->headScript()->captureEnd(); ?>

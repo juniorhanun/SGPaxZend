@@ -6,6 +6,8 @@ use Pax\Service\AssociadosService;
 use Pax\Service\DependentesService;
 use Pax\Service\FuncionariosService;
 use Pax\Service\MensalidadeService;
+use Pax\Service\ObitosService;
+use Pax\Service\UrnasService;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
@@ -24,6 +26,7 @@ class Module
          * @var $ev \Zend\Mvc\MvcEvent
          * @var $auth \Zend\Authentication\AuthenticationService
          */
+
 
 
 
@@ -92,6 +95,12 @@ class Module
                 'Pax\Service\MensalidadeService' => function($em){
                         return new MensalidadeService($em->get('Doctrine\ORM\EntityManager'));
                     },
+                'Pax\Service\UrnasService' => function($em){
+                    return new UrnasService($em->get('Doctrine\ORM\EntityManager'));
+                },
+                'Pax\Service\ObitosService' => function($em){
+                    return new ObitosService($em->get('Doctrine\ORM\EntityManager'));
+                },
             ),
 
         );

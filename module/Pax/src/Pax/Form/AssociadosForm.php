@@ -38,16 +38,16 @@ class AssociadosForm extends Form
         ));
         $this->add($cidade_asso);
 
-        //Input nome
-        $nome = new Text('nome');
-        $nome->setLabel('nome.: ')
-            ->setAttributes(array(
-                'maxlength' => 40,
-                'class' => 'form-control',
-                'id' => 'nome',
-                'placeholder' => 'Nome.:',
-            ));
-        $this->add($nome);
+            //Input nome
+            $nome = new Text('nome');
+            $nome->setLabel('nome.: ')
+                ->setAttributes(array(
+                    'maxlength' => 40,
+                    'class' => 'form-control',
+                    'id' => 'nome',
+                    'placeholder' => 'Nome.:',
+                ));
+            $this->add($nome);
 
         //Input contrato
         $contrato = new Text('contrato');
@@ -471,7 +471,6 @@ class AssociadosForm extends Form
         $observacao = new Textarea('observacao');
         $observacao->setLabel('observacao.: ')
             ->setAttributes(array(
-                'maxlength' => 40,
                 'class' => 'form-control',
                 'id' => 'observacao',
                 'placeholder' => 'Observação.:',

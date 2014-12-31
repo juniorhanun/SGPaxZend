@@ -67,7 +67,7 @@ abstract class AbstractController extends AbstractActionController
     public function indexAction()
     {
         // Resebe os dados da Entidade passada
-        $list = $this->getEm()->getRepository($this->entity)->findBy(array($this->campoPesquisa => $this->dadoPesquisa),array($this->campoOrder => $this->order));
+        $list = $this->getEm()->getRepository($this->entity)->findAll();
 
 
         // Pega o numero da pagina
@@ -125,9 +125,11 @@ abstract class AbstractController extends AbstractActionController
 
                 // Pega a Instancia do serviço "Entidade"
                 $service = $this->getServiceLocator()->get($this->service);
+                $datas = $request->getPost()->toArray();
+                $datas['id_funcionarios'] = $this->getEm()->getRepository('Pax\Entity\PaxFuncionarios')->find(1);
 
                 // Verifica se foi inserido os dados com sucesso na entidade
-                if ($service->save($request->getPost()->toArray())){
+                if ($service->save($datas)){
                     $this->flashMessenger()->addSuccessMessage('Cadastrado com sucesso!');
                 }else{
                     $this->flashMessenger()->addErrorMessage('Não foi possivel cadastrar! Tente mais tarde.');
@@ -137,6 +139,7 @@ abstract class AbstractController extends AbstractActionController
                 return $this->redirect()
                     ->toRoute($this->route, array('controller' => $this->controller,));
             }
+
         }
 
         // Instancia o formulario na view

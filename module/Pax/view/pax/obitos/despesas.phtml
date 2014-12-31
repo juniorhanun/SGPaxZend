@@ -1,0 +1,48 @@
+<script>
+    jQuery(document).ready(function(){
+        $( "#codigo_ass" ).combogrid({
+            url: '<?php echo $this->url('pax-obitos/default', array('action' => 'pesquisas'))?>',
+            debug:true,
+            //replaceNull: true,
+            colModel: [{'columnName':'contrato','width':'20','label':'Contato'}, {'columnName':'cod_associado','width':'10','label':'cod_associado'}, {'columnName':'nome','width':'60','label':'Nome'}],
+            select: function( event, ui ) {
+
+                $( "#codigo_ass" ).val( ui.item.cod_associado );
+                $( "#nome_associado" ).val( ui.item.nome );
+                $( "#contrato" ).val( ui.item.contrato );
+                return false;
+            }
+        });
+    });
+</script>
+
+<h2>Cadastrar Despesas</h2>
+
+<?php
+/**
+ * @var $form \Zend\Form\Form
+ */
+$form = $this->form;
+
+if ($this->success)
+    echo '<div class="alert alert-success">'.$this->success[0].'<button type="button" class="close" data-dismiss="alert">×</button></div>';
+
+if ($this->error)
+    echo '<div class="alert alert-warning">'.$this->error[0].'<button type="button" class="close" data-dismiss="alert">×</button></div>';
+
+$this->formElementErrors()
+    ->setMessageOpenFormat ('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>')
+    ->setMessageCloseString ('</div>')
+    ->render ($form);
+
+$form->setAttribute('action', $this->url('pax-obitos/default', array('controller' => 'obitos', 'action' => 'despesas')));
+
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+echo $this->formCollection($form);
+
+echo $this->form()->closeTag();
+?>
+
