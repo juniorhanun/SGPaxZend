@@ -402,6 +402,8 @@ class PaxFuncionarios extends AbstractEntity
         if(!$dataAdm):
             $this->dataAdm = null;
         else:
+            $data = explode('/', $dataAdm);
+            $dataAdm = $data[2] . '-'.$data[1].'-'.$data[0];
             $this->dataAdm = new \DateTime($dataAdm);
         endif;
 

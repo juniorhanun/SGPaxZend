@@ -32,12 +32,12 @@ class UrnasForm extends Form
 
         //Input saldo
         $saldo = new Text('saldo');
-        $saldo->setLabel('Saldo da Urnas.: ')
+        $saldo->setLabel('Saldo.: ')
             ->setAttributes(array(
                 'maxlength' => 40,
                 'class' => 'form-control',
                 'id' => 'saldo',
-                'placeholder' => 'Saldo da Urnas.:',
+                'placeholder' => 'Saldo.:',
             ));
         $this->add($saldo);
 

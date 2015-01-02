@@ -241,8 +241,8 @@ class PaxDependentes extends AbstractEntity
         if(!$dataObito):
             $this->dataObito = null;
         else:
-            list ($dia, $mes, $ano) = split ('[/.-]', $dataObito);
-            $dataObito = $ano . '-'.$mes.'-'.$dia;
+            $data = explode('/', $dataObito);
+            $dataObito = $data[2] . '-'.$data[1].'-'.$data[0];
             //var_dump($dataObito);die("PaxAssociaodosEntidade L 448");
             $this->dataObito = new \DateTime($dataObito);
         endif;
@@ -271,9 +271,8 @@ class PaxDependentes extends AbstractEntity
         if(!$dataNascimento):
             $this->dataNascimento = null;
         else:
-            list ($dia, $mes, $ano) = split ('[/.-]', $dataNascimento);
-            $dataNascimento = $ano . '-'.$mes.'-'.$dia;
-            //var_dump($dataNascimento);die("PaxAssociaodosEntidade L 448");
+            $data = explode('/', $dataNascimento);
+            $dataNascimento = $data[2] . '-'.$data[1].'-'.$data[0];
             $this->dataNascimento = new \DateTime($dataNascimento);
         endif;
 

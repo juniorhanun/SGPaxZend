@@ -78,7 +78,6 @@ class AssociadosController extends AbstractController
             $form = $this->form;
 
         $idFuncionario = $this->identity()['id'];
-        //var_dump($idFuncionario);die("AssociadosController L 79");
         $nomeFuncionario = $this->getEm()->getRepository('Pax\Entity\PaxFuncionarios')->findBy(array('id' => 1),array());
         $request = $this->getRequest();
 
@@ -86,12 +85,8 @@ class AssociadosController extends AbstractController
 
             $form->setData($request->getPost());
 
-            //var_dump($request->getPost());die("AssociadosController L 85");
-
 
             if ($form->isValid()){
-
-                //var_dump($request->getPost());die("AssociadosController L 90");
 
                 $service = $this->getServiceLocator()->get($this->service);
                 $datas = $request->getPost()->toArray();
@@ -99,20 +94,25 @@ class AssociadosController extends AbstractController
 
 
                 if ($service->save($datas)){
+
                     $id = $this->getEm()->getRepository($this->entity)->findIdAssociado($datas['nome']);
+
                     $dependente = array();
-                    $dependente['id_associado'] = $this->getEm()->getRepository($this->entity)->find($id);
+                    $dependente['id_associado'] = $id;
+
                     $serviceDependente = $this->getServiceLocator()->get("Pax\Service\DependentesService");
+                    //die("ali");
                     if(!$datas['pai'] == ""){
-                        var_dump($datas['pai']);
+                        //$dependente['id_associado'] = $id;
                         $dependente['nome'] = $datas['pai'];
                         $dependente['tipo'] = "Pai";
                         $dependente['status'] = $datas["status_pai"];
+                        //var_dump($dependente);die();
                         $serviceDependente->save($dependente);
+                        //die("pai");
+
                     }
-                    //var_dump($datas['mae']);
                     if(!$datas['mae'] == ""){
-                        var_dump($datas['mae']);
                         $dependente['nome'] = $datas['mae'];
                         $dependente['tipo'] = "Mae";
                         $dependente['status'] = $datas["status_mae"];

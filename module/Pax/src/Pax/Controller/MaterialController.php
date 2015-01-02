@@ -14,19 +14,20 @@ use Core\Controller\AbstractController;
  * @version V0.1
  * @package Pax\Controller
  */
-class UrnasController extends AbstractController
+class MaterialController extends AbstractController
 {
 
     function __construct()
     {
         $this->form = 'Pax\Form\UrnasForm';
-        $this->controller = 'urnas';
-        $this->route = 'pax-urnas/default';
-        $this->service = 'Pax\Service\UrnasService';
-        $this->entity = 'Pax\Entity\PaxUrnas';
+        $this->controller = 'material';
+        $this->route = 'pax-material/default';
+        $this->service = 'Pax\Service\MaterialService';
+        $this->entity = 'Pax\Entity\PaxMaterial';
         $this->itemPorPaigina = 30;
         $this->orderCampo = "descricao";
     }
 
 
 }
+

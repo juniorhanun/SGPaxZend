@@ -18,8 +18,9 @@ use Zend\View\Model\ViewModel;
  * @copyright (c) 2014, Winston Hanun Junior
  * @link http://www.sisdeve.com.br
  * @version V0.1
+ * @package Pax\Controller
  */
-class ObitosController  extends AbstractController
+class ObitosController extends AbstractController
 {
 
     function __construct()

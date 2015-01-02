@@ -154,18 +154,18 @@ class PaxMensalidade extends AbstractEntity
      */
     public function setDataPagamento($dataPagamento)
     {
-        /*
+
         if(!$dataPagamento):
             $this->dataPagamento = null;
         else:
-            list ($dia, $mes, $ano) = split ('[/.-]', $dataPagamento);
-            $dataPagamento = $ano . '-'.$mes.'-'.$dia;
+            $data = explode('/', $dataPagamento);
+            $dataPagamento = $data[2] . '-'.$data[1].'-'.$data[0];
             //var_dump($dataPagamento);die("PaxAssociaodosEntidade L 448");
             $this->dataPagamento = new \DateTime($dataPagamento);
         endif;
 
         return $this;
-        */
+
     }
 
     /**

@@ -182,7 +182,7 @@ $form->setAttribute('action', $this->url('pax-associados/default', array('contro
             <div class='col-lg-2  col-md-2'>
                 <?php
                 // renderiza html input
-                echo $this->formInput($form->get('viajem'));
+                echo $this->formSelect($form->get('viajem'));
 
                 // renderiza elemento de erro
                 echo $this->formElementErrors()

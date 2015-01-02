@@ -5,6 +5,7 @@ use Pax\Form\AssociadosForm;
 use Pax\Service\AssociadosService;
 use Pax\Service\DependentesService;
 use Pax\Service\FuncionariosService;
+use Pax\Service\MaterialService;
 use Pax\Service\MensalidadeService;
 use Pax\Service\ObitosService;
 use Pax\Service\UrnasService;
@@ -26,9 +27,6 @@ class Module
          * @var $ev \Zend\Mvc\MvcEvent
          * @var $auth \Zend\Authentication\AuthenticationService
          */
-
-
-
 
         $sharedEvents = $eventManager->getSharedManager();
         $sharedEvents->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($ev){
@@ -100,6 +98,9 @@ class Module
                 },
                 'Pax\Service\ObitosService' => function($em){
                     return new ObitosService($em->get('Doctrine\ORM\EntityManager'));
+                },
+                'Pax\Service\MaterialService' => function($em){
+                    return new MaterialService($em->get('Doctrine\ORM\EntityManager'));
                 },
             ),
 

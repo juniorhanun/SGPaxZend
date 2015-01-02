@@ -1,0 +1,60 @@
+<?php
+
+namespace Pax\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PaxMaterial
+ *
+ * @ORM\Table(name="pax_material")
+ * @ORM\Entity
+ */
+class PaxMaterial
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao", type="string", length=200, nullable=true)
+     */
+    private $descricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="saldo", type="string", length=45, nullable=true)
+     */
+    private $saldo;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="compra", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $compra;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="venda", type="float", precision=15, scale=2, nullable=true)
+     */
+    private $venda;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=true)
+     */
+    private $status;
+
+
+}

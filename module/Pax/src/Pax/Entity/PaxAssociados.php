@@ -420,9 +420,8 @@ class PaxAssociados extends AbstractEntity
         if(!$dataContrato):
             $this->dataContrato = null;
         else:
-            list ($dia, $mes, $ano) = split ('[/.-]', $dataContrato);
-            $dataContrato = $ano . '-'.$mes.'-'.$dia;
-            //var_dump($dataContrato);die("PaxAssociaodosEntidade L 448");
+            $data = explode('/', $dataContrato);
+            $dataContrato = $data[2] . '-'.$data[1].'-'.$data[0];
             $this->dataContrato = new \DateTime($dataContrato);
         endif;
 
@@ -450,8 +449,8 @@ class PaxAssociados extends AbstractEntity
         if(!$dataPedido):
             $this->dataPedido = null;
         else:
-            list ($dia, $mes, $ano) = split ('[/.-]', $dataPedido);
-            $dataPedido = $ano . '-'.$mes.'-'.$dia;
+            $data = explode('/', $dataPedido);
+            $dataPedido = $data[2] . '-'.$data[1].'-'.$data[0];
             //var_dump($dataContrato);die("PaxAssociaodosEntidade L 448");
             $this->dataPedido = new \DateTime($dataPedido);
         endif;
@@ -480,8 +479,8 @@ class PaxAssociados extends AbstractEntity
         if(!$dataNascimento):
             $this->dataNascimento = null;
         else:
-            list ($dia, $mes, $ano) = split ('[/.-]', $dataNascimento);
-            $dataNascimento = $ano . '-'.$mes.'-'.$dia;
+            $data = explode('/', $dataNascimento);
+            $dataNascimento = $data[2] . '-'.$data[1].'-'.$data[0];
             //var_dump($dataContrato);die("PaxAssociaodosEntidade L 448");
             $this->dataNascimento = new \DateTime($dataNascimento);
         endif;
