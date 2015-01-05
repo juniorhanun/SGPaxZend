@@ -3,9 +3,18 @@
 namespace Pax\Controller;
 
 use Core\Controller\AbstractController;
+use fpdf\FPDF;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+/*
+ *******************************************************************************
+ *     Gerar um documento em PDF usando a biblioteca FPDF                      *
+ *                AUTOR: Winston Hanun Junior                                  *
+ *                E-MAIL: hanunjunior@gmail.com                                *
+ *                        DATA: 03/01/2015                                     *
+ * *****************************************************************************
+ */
 class MensalidadeController extends AbstractController
 {
 
@@ -44,6 +53,35 @@ class MensalidadeController extends AbstractController
 
     public function grupoMensalidadeAction()
     {
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetMargins(10, 10, 10);
+        $pdf->SetFont('Arial','B',12);
+        //posiciona verticalmente
+        $pdf->SetY("1");
+        //posiciona horizontalmente
+        $pdf->SetX("1");
+        //$pdf->Line(70, 48, 70, 23);
+        $pdf->Cell(90,10,'Nome',1,0,'L');
+        //posiciona verticalmente
+        $pdf->SetY("10");
+        //posiciona horizontalmente
+        $pdf->SetX("1");
+        $pdf->Cell(60,20,'Nascimento',0,0,'L');
+        $pdf->Cell(40,30,'Departamento',0,1,'C');
+        $pdf->Output();
+        /*$pdf = new PdfModel();
+        $pdf->setOption('filename', 'monthly-report'); // Triggers PDF download, automatically appends ".pdf"
+        $pdf->setOption('paperSize', 'a4'); // Defaults to "8x11"
+        $pdf->setOption('paperOrientation', 'landscape'); // Defaults to "portrait"
+
+        // To set view variables
+        $pdf->setVariables(array(
+            'message' => 'Hello'
+        ));
+        //die();
+
+        return $pdf;*/
 
         // Verifica se foi passado um objeto Form, senão ele cria um objeto Form
         if (is_string($this->form))
@@ -72,19 +110,23 @@ class MensalidadeController extends AbstractController
                 $dados = array();
                 foreach($associados as $ass):
                     $service = $this->getServiceLocator()->get('Pax\Service\MensalidadeService');
-                    $dados['idAssociado'] = $ass['id'];
+                    $dados['id_associados'] = $ass['id'];
+                    $dados['cobrador'] = $ass['cobrador'];
+
                     $dados['idFuncionarios'] = 1;
                     $dados['mesReferencia'] = $data['mesReferencia'];
                     $dados['anoReferencia'] = $data['anoReferencia'];
                     $dados['valorMensalidade'] = (($ass['tipoContrato'] * $data['valorCobranca']) / 100);
+                    //var_dump($dados);die();
 
                     $service->save($dados);
 
                 endforeach;
 
-                $viewModel = new ViewModel(array('dados' => $associados, 'data' => $data));
-                $viewModel->setTerminal(true);
-                return $viewModel;
+
+                //$viewModel = new ViewModel(array('dados' => $associados, 'data' => $data));
+                //$viewModel->setTerminal(true);
+                //return $viewModel;
 
                 //return new ViewModel(array('dados' => $associados, 'data' => $data));
 

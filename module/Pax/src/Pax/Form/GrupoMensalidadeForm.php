@@ -90,6 +90,17 @@ class GrupoMensalidadeForm  extends Form
             ));
         $this->add($anoReferencia);
 
+        //Input cobrador
+        $cobrador = new Textarea('cobrador');
+        $cobrador->setLabel('Cobrador.: ')
+            ->setAttributes(array(
+                'maxlength' => 40,
+                'class' => 'form-control',
+                'id' => 'cobrador',
+                'placeholder' => 'Cobrador.:',
+            ));
+        $this->add($cobrador);
+
         //Botao submit
         $button = new Button('submit');
         $button->setLabel('Enviar')

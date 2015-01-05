@@ -8,8 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PaxMensalidade
  *
- * @ORM\Table(name="pax_mensalidade", indexes={@ORM\Index(name="fk_pax_mensalidade_pax_associados1_idx", columns={"id_associado"}), @ORM\Index(name="fk_pax_mensalidade_pax_funcionarios1_idx", columns={"id_funcionarios"})})
- * @ORM\Entity
+ * @ORM\Table(name="pax_mensalidade", indexes={@ORM\Index(name="fk_pax_mensalidade_pax_associados1_idx", columns={"id_associados"}), @ORM\Index(name="fk_pax_mensalidade_pax_funcionarios1_idx", columns={"id_funcionarios"})})
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Pax\Entity\PaxMensalidadeRepository")
  */
@@ -23,20 +22,6 @@ class PaxMensalidade extends AbstractEntity
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_associado", type="integer", nullable=false)
-     */
-    private $idAssociado;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_funcionarios", type="integer", nullable=false)
-     */
-    private $idFuncionarios;
 
     /**
      * @var \DateTime
@@ -87,6 +72,27 @@ class PaxMensalidade extends AbstractEntity
      */
     private $diferenca;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cobrador", type="string", length=45, nullable=true)
+     */
+    private $cobrador;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_associados", type="integer", nullable=false)
+     */
+    private $idAssociados;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_funcionarios", type="integer", nullable=false)
+     */
+    private $idFuncionarios;
+
 
 
     /**
@@ -100,72 +106,16 @@ class PaxMensalidade extends AbstractEntity
     }
 
     /**
-     * Set idAssociado
-     *
-     * @param integer $idAssociado
-     * @return PaxMensalidade
-     */
-    public function setIdAssociado($idAssociado)
-    {
-        $this->idAssociado = $idAssociado;
-
-        return $this;
-    }
-
-    /**
-     * Get idAssociado
-     *
-     * @return integer 
-     */
-    public function getIdAssociado()
-    {
-        return $this->idAssociado;
-    }
-
-    /**
-     * Set idFuncionarios
-     *
-     * @param integer $idFuncionarios
-     * @return PaxMensalidade
-     */
-    public function setIdFuncionarios($idFuncionarios)
-    {
-        $this->idFuncionarios = $idFuncionarios;
-
-        return $this;
-    }
-
-    /**
-     * Get idFuncionarios
-     *
-     * @return integer 
-     */
-    public function getIdFuncionarios()
-    {
-        return $this->idFuncionarios;
-    }
-
-    /**
      * Set dataPagamento
      *
      * @param \DateTime $dataPagamento
      * @return PaxMensalidade
-     * @ORM\PrePersist
      */
     public function setDataPagamento($dataPagamento)
     {
-
-        if(!$dataPagamento):
-            $this->dataPagamento = null;
-        else:
-            $data = explode('/', $dataPagamento);
-            $dataPagamento = $data[2] . '-'.$data[1].'-'.$data[0];
-            //var_dump($dataPagamento);die("PaxAssociaodosEntidade L 448");
-            $this->dataPagamento = new \DateTime($dataPagamento);
-        endif;
+        $this->dataPagamento = $dataPagamento;
 
         return $this;
-
     }
 
     /**
@@ -314,5 +264,74 @@ class PaxMensalidade extends AbstractEntity
     public function getDiferenca()
     {
         return $this->diferenca;
+    }
+
+    /**
+     * Set cobrador
+     *
+     * @param string $cobrador
+     * @return PaxMensalidade
+     */
+    public function setCobrador($cobrador)
+    {
+        $this->cobrador = $cobrador;
+
+        return $this;
+    }
+
+    /**
+     * Get cobrador
+     *
+     * @return string 
+     */
+    public function getCobrador()
+    {
+        return $this->cobrador;
+    }
+
+    /**
+     * Set idAssociados
+     *
+     * @param integer $idAssociados
+     * @return PaxMensalidade
+     */
+    public function setIdAssociados($idAssociados)
+    {
+        $this->idAssociados = $idAssociados;
+
+        return $this;
+    }
+
+    /**
+     * Get idAssociados
+     *
+     * @return integer 
+     */
+    public function getIdAssociados()
+    {
+        return $this->idAssociados;
+    }
+
+    /**
+     * Set idFuncionarios
+     *
+     * @param integer $idFuncionarios
+     * @return PaxMensalidade
+     */
+    public function setIdFuncionarios($idFuncionarios)
+    {
+        $this->idFuncionarios = $idFuncionarios;
+
+        return $this;
+    }
+
+    /**
+     * Get idFuncionarios
+     *
+     * @return integer 
+     */
+    public function getIdFuncionarios()
+    {
+        return $this->idFuncionarios;
     }
 }

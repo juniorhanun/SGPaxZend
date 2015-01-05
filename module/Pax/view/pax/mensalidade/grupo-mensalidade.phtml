@@ -1,35 +1,5 @@
-<link href="/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
-<link href="/css/bootstrap-theme.min.css" media="screen" rel="stylesheet" type="text/css">
-<?php
-//var_dump($this->dados);die();
-/**
- * @var $dados \Pax\Entity\PaxAssociados
- */
-foreach($this->dados as $dados):
-?>
-    <div class='row'>
-        <div class='form-group'>
-            <div class='col-md-4'>
-                <?= $dados['id']?>
-            </div>
-            <div class='col-md-8'>
-                <?= $dados['nome']?>
-            </div>
-        </div>
-    </div>
-    <div class='row'>
-        <div class='form-group'>
-            <div class='col-md-4'>
-                <?= $dados['endereco']?>
-            </div>
-            <div class='col-md-8'>
-                <?= $dados['enderecoCobranca']?>
-            </div>
-        </div>
-    </div>
-<?php
-
-endforeach;
-//die("Arrumar Linha 80 no MensalidadeController");
-
-?>
+<html>
+<body>
+<h1>My Name is $message</h1>
+</body>
+</html>

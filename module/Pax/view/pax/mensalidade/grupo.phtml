@@ -120,6 +120,26 @@
                 </div>
             </div>
 
+            <div class='row'>
+                <div class='form-group'>
+                    <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Cobrador.:</label>
+                    <div class='col-lg-4  col-md-4'>
+                        <?php
+                        // renderiza html input
+                        echo $this->formInput($form->get('cobrador'));
+
+                        // renderiza elemento de erro
+                        echo $this->formElementErrors()
+                            ->setMessageOpenFormat("<small class='text-danger'>")
+                            ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                            ->setMessageCloseString("</small>")
+                            ->render($form->get('cobrador'));
+                        ?>
+                    </div>
+
+                </div>
+            </div>
+
 
 
         </div>

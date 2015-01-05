@@ -1,3 +1,20 @@
+<div class="pesquisa_pequena">
+    <script>
+        jQuery(document).ready(function(){
+            $( "#nome" ).combogrid({
+                url: '<?php echo $this->url('pax-associados/default', array('action' => 'pesquisas'))?>',
+                debug:true,
+                //replaceNull: true,
+                colModel: [{'columnName':'id','width':'10','label':'Id'}, {'columnName':'nome','width':'60','label':'Nome'},{'columnName':'contrato','width':'30','label':'Contrato'}],
+                select: function( event, ui ) {
+
+                    $( "#nome" ).val( ui.item.nome );
+                    return false;
+                }
+            });
+        });
+    </script>
+</div>
 <div class="panel panel-primary">
 <div class="panel-heading">
     <div class="panel-title">

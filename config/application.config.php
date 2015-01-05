@@ -9,6 +9,7 @@ return array(
     'modules' => array(
         'DoctrineModule',
         'DoctrineORMModule',
+        'DOMPDFModule',
         //'Application',
         'Admin',
         'Core',

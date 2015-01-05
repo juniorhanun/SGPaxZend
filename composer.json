@@ -15,7 +15,9 @@
         "doctrine/annotations": "*",
         "doctrine/data-fixtures": "dev-master",
         "hounddog/doctrine-data-fixture-module": "dev-master",
-        "zendframework/zftool": "dev-master"
+        "zendframework/zftool": "dev-master",
+        "dino/dompdf-module": "dev-master",
+        "itbz/fpdf": "dev-master"
 
     }
 }

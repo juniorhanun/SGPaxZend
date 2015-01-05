@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class PaxObitosRepository extends EntityRepository
 {
+    public function findByPesquisas($nome)
+    {
+        /**
+         * @var $obitos \Pax\Entity\PaxObitos
+         */
+        $obitos = $this->createQueryBuilder('o')
+            ->where('o.nome like :b1')
+            ->setParameter('b1', '%'.$nome.'%')
+            ->getQuery()
+            ->getArrayResult();
+        if(!empty($obitos)):
+            return $obitos;
+        else :
+            return false;
+        endif;
+
+    }
 }

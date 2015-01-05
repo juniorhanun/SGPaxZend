@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PaxMensalidade
  *
- * @ORM\Table(name="pax_mensalidade", indexes={@ORM\Index(name="fk_pax_mensalidade_pax_associados1_idx", columns={"id_associado"}), @ORM\Index(name="fk_pax_mensalidade_pax_funcionarios1_idx", columns={"id_funcionarios"})})
+ * @ORM\Table(name="pax_mensalidade", indexes={@ORM\Index(name="fk_pax_mensalidade_pax_associados1_idx", columns={"id_associados"}), @ORM\Index(name="fk_pax_mensalidade_pax_funcionarios1_idx", columns={"id_funcionarios"})})
  * @ORM\Entity
  */
 class PaxMensalidade
@@ -20,20 +20,6 @@ class PaxMensalidade
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_associado", type="integer", nullable=false)
-     */
-    private $idAssociado;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_funcionarios", type="integer", nullable=false)
-     */
-    private $idFuncionarios;
 
     /**
      * @var \DateTime
@@ -83,6 +69,27 @@ class PaxMensalidade
      * @ORM\Column(name="diferenca", type="float", precision=15, scale=2, nullable=true)
      */
     private $diferenca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cobrador", type="string", length=45, nullable=true)
+     */
+    private $cobrador;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_associados", type="integer", nullable=false)
+     */
+    private $idAssociados;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_funcionarios", type="integer", nullable=false)
+     */
+    private $idFuncionarios;
 
 
 }
