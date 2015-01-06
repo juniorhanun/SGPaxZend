@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class PaxDependentesRepository extends EntityRepository
 {
+    public function findByPesquisas($nome)
+    {
+        /**
+         * @var $dependente \Pax\Entity\PaxDependentes
+         */
+        $dependente = $this->createQueryBuilder('a')
+            ->where('a.nome = :b1')
+            ->setParameter('b1', $nome)->getQuery()->getResult();
+        if(!empty($dependente)):
+            return $dependente;
+        else :
+            return false;
+        endif;
+
+    }
+
+    public function findByNomeLike($nome){
+        $associados = $this->createQueryBuilder('a')
+            ->where('a.nome like :n1')
+            ->setParameter('n1','%'.$nome.'%')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+        return $associados;
+    }
 }

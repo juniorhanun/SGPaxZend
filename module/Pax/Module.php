@@ -2,11 +2,13 @@
 namespace Pax;
 
 use Pax\Form\AssociadosForm;
+use Pax\Form\GrupoMensalidadeForm;
 use Pax\Service\AssociadosService;
 use Pax\Service\DependentesService;
 use Pax\Service\FuncionariosService;
 use Pax\Service\MaterialService;
 use Pax\Service\MensalidadeService;
+use Pax\Service\MovimentoCaixaService;
 use Pax\Service\ObitosService;
 use Pax\Service\UrnasService;
 use Zend\Mvc\ModuleRouteListener;
@@ -87,6 +89,9 @@ class Module
                 'Pax\Form\AssociadosForm' => function($em){
                         return new AssociadosForm($em->get('Doctrine\ORM\EntityManager'));
                     },
+                'Pax\Form\GrupoMensalidadeForm' => function($em){
+                    return new GrupoMensalidadeForm($em->get('Doctrine\ORM\EntityManager'));
+                },
                 'Pax\Service\DependentesService' => function($em){
                         return new DependentesService($em->get('Doctrine\ORM\EntityManager'));
                     },
@@ -101,6 +106,9 @@ class Module
                 },
                 'Pax\Service\MaterialService' => function($em){
                     return new MaterialService($em->get('Doctrine\ORM\EntityManager'));
+                },
+                'Pax\Service\MovimentoCaixaService' => function($em){
+                    return new MovimentoCaixaService($em->get('Doctrine\ORM\EntityManager'));
                 },
             ),
 

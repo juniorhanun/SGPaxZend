@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PaxDependentes
  *
- * @ORM\Table(name="pax_dependentes")
+ * @ORM\Table(name="pax_dependentes", indexes={@ORM\Index(name="fk_pax_dependentes_1_idx", columns={"id_associado"})})
  * @ORM\Entity
  */
 class PaxDependentes
@@ -20,13 +20,6 @@ class PaxDependentes
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_associado", type="integer", nullable=true)
-     */
-    private $idAssociado;
 
     /**
      * @var string
@@ -76,6 +69,16 @@ class PaxDependentes
      * @ORM\Column(name="data_nascimento", type="datetime", nullable=true)
      */
     private $dataNascimento;
+
+    /**
+     * @var \Pax\Entity\PaxAssociados
+     *
+     * @ORM\ManyToOne(targetEntity="Pax\Entity\PaxAssociados")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_associado", referencedColumnName="id")
+     * })
+     */
+    private $idAssociado;
 
 
 }

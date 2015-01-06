@@ -4,24 +4,30 @@
  */
 namespace Pax\Form;
 
+use DoctrineModule\Form\Element\ObjectSelect;
+use DoctrineModule\Persistence\ObjectManagerAwareInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+
 
 use Zend\Form\Element\Button;
-use Zend\Form\Element\Password;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Text;
 use Zend\Form\Element\Textarea;
 use Zend\Form\Form;
 
-class AssociadosForm extends Form
+class AssociadosForm extends Form implements ObjectManagerAwareInterface
 {
-    public function __construct()
+    protected $objectManager;
+
+    public function __construct(ObjectManager $objectManager)
     {
+        $this->setObjectManager($objectManager);
         parent::__construct(null);
         $this->setAttributes(array(
             'method' => 'POST',
             'role' => 'form'
         ));
-        //$this->setInputFilter(new AssociadosFilter());
+
 
         // Select cidade_asso
         $cidade_asso = new Select('cidade_asso');
@@ -114,7 +120,7 @@ class AssociadosForm extends Form
                 'maxlength' => 40,
                 'class' => 'form-control',
                 'id' => 'serie',
-                'placeholder' => 'Serie.:',
+                'placeholder' => 'Grupo.:',
             ));
         $this->add($serie);
 
@@ -386,14 +392,24 @@ class AssociadosForm extends Form
             ));
         $this->add($translado);
 
-        //Input vendedor
-        $vendedor = new Text('vendedor');
-        $vendedor->setLabel('vendedor.: ')
+        $vendedor = new ObjectSelect('vendedor');
+        $vendedor->setLabel('Vendedor')
             ->setAttributes(array(
-                'maxlength' => 40,
                 'class' => 'form-control',
-                'id' => 'vendedor',
-                'placeholder' => 'Vendedor.:',
+                'id' => 'vendedor',))
+            ->setOptions(array(
+                'object_manager' => $this->getObjectManager(),
+                'target_class'   => 'Pax\Entity\PaxFuncionarios',
+                'property'       => 'nome',
+                'empty_option'   => '--Selecione--',
+                'is_method'      => true,
+                'find_method'    => array(
+                    'name'   => 'findBy',
+                    'params' => array(
+                        'criteria' => array(),
+                        'orderBy'  => array('nome' => 'ASC'),
+                    ),
+                ),
             ));
         $this->add($vendedor);
 
@@ -512,7 +528,29 @@ class AssociadosForm extends Form
             ));
         $this->add($button);
 
+        $this->setInputFilter(new AssociadosFilter($vendedor->getValueOptions()));
 
+
+    }
+
+    /**
+     * Set the object manager
+     *
+     * @param ObjectManager $objectManager
+     */
+    public function setObjectManager(ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
+    /**
+     * Get the object manager
+     *
+     * @return ObjectManager
+     */
+    public function getObjectManager()
+    {
+        return $this->objectManager;
     }
 
 }

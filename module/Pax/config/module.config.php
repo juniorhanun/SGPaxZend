@@ -261,14 +261,14 @@ return array(
                     )
                 ),
             ),
-            'pax-grupo' => array(
+            'pax-taxa' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/app-pax/grupo',
+                    'route'    => '/app-pax/taxa',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Pax\Controller',
                         'controller'    => 'Mensalidade',
-                        'action'        => 'grupo',
+                        'action'        => 'index',
                     ),
                 ),
                 'may_terminate' => true,

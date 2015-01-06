@@ -12,4 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class PaxMovimentoCaixaRepository extends EntityRepository
 {
+    public function totalDebito(){
+        $debito = $this->createQueryBuilder('d')
+            ->select('sum(d.valorLancado)')
+            ->where('d.tipo = :t')
+            ->setParameter('t', 'D')
+            ->setMaxResults(1)
+            ->getQuery()->getArrayResult();
+
+        return $debito;
+    }
+
+    public function totalCredito(){
+        $credito = $this->createQueryBuilder('d')
+            ->select('sum(d.valorLancado)')
+            ->where('d.tipo = :t')
+            ->setParameter('t', 'C')
+            ->setMaxResults(1)
+            ->getQuery()->getArrayResult();
+
+        return $credito;
+    }
 }

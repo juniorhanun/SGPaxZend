@@ -177,20 +177,21 @@ class GeraForController extends AbstractActionController
 
                 while(($dados = fgetcsv($fp, 0, ";")) !== FALSE)
                 {
-                    var_dump($dados);die();
+                    //var_dump($dados);die();
                     $quant_campos = count($dados);
                     if($contador == 0)
                     {
                     }else{
                         for($i = 0; $i < 1; $i++)
                         {
-                            $query = mysql_query("Insert into socios(nome, titulo, estadocivil, datanascimento, profissao, rua, bairro, cidade, estado, cep, fone, celular, fonecontato, proposto, aceito, cpf, rg, dependente, email, tipo) values('".$nomes."','".$titulo."','".$estCivil."','".$dataNasc."','".$profissao."','".$endereco."','".$bairro."','".$cidade."','".$estado."','".$cep."','".$fone."','".$celular."','".$fonecontato."','".$proposto."','".$aceito."','".$cpf."','".$rg."','".$dependencia."','".$email."','".$tipo."')");
-                            echo $query;
+                            echo "INSERT INTO pax_associados (id, id_funcionarios, cidade_asso, nome, contrato, data_contrato, data_pedido, data_nascimento, dia_pagemento, serie, porcento, viajem, estado_civil, profissao, religiao, cep, estado, cidade, bairro, endereco, endereco_cobranca, celular, telefone, local, pai, status_pai, mae, status_mae, conjugue, status_conjugue, cpf, rg, status, translado, observacao, condicao, vendedor, tipo_contrato, nome_sogra, status_sogra, nome_sogro, status_sogro, motivo_cancelamento, tipo_caixao) VALUES (NULL, '1', 'CIDAE DE GOIÁS', '$dados[0]', '$dados[3]', NULL, NULL, NULL, NULL, '$dados[4]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$dados[1]', '$dados[1]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ATIVO', NULL, NULL, NULL, NULL, '$dados[5]', NULL, NULL, NULL, NULL, NULL, NULL);";
+                            //echo $query;
                         }
                         echo "</tr>";
                     }
                     $contador++;
                 }
+                die();
                 fclose($fp);
                 mysql_close($con);
             } else {

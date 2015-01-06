@@ -8,9 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PaxDependentes
  *
- * @ORM\Table(name="pax_dependentes")
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="pax_dependentes", indexes={@ORM\Index(name="fk_pax_dependentes_1_idx", columns={"id_associado"})})
+ * @ORM\Entity@ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Pax\Entity\PaxDependentesRepository")
  */
 class PaxDependentes extends AbstractEntity
@@ -23,13 +22,6 @@ class PaxDependentes extends AbstractEntity
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_associado", type="integer", nullable=true)
-     */
-    private $idAssociado;
 
     /**
      * @var string
@@ -80,6 +72,16 @@ class PaxDependentes extends AbstractEntity
      */
     private $dataNascimento;
 
+    /**
+     * @var \Pax\Entity\PaxAssociados
+     *
+     * @ORM\ManyToOne(targetEntity="Pax\Entity\PaxAssociados")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_associado", referencedColumnName="id")
+     * })
+     */
+    private $idAssociado;
+
 
 
     /**
@@ -90,29 +92,6 @@ class PaxDependentes extends AbstractEntity
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set idAssociado
-     *
-     * @param integer $idAssociado
-     * @return PaxDependentes
-     */
-    public function setIdAssociado($idAssociado)
-    {
-        $this->idAssociado = $idAssociado;
-
-        return $this;
-    }
-
-    /**
-     * Get idAssociado
-     *
-     * @return integer 
-     */
-    public function getIdAssociado()
-    {
-        return $this->idAssociado;
     }
 
     /**
@@ -287,5 +266,28 @@ class PaxDependentes extends AbstractEntity
     public function getDataNascimento()
     {
         return $this->dataNascimento;
+    }
+
+    /**
+     * Set idAssociado
+     *
+     * @param \Pax\Entity\PaxAssociados $idAssociado
+     * @return PaxDependentes
+     */
+    public function setIdAssociado(\Pax\Entity\PaxAssociados $idAssociado = null)
+    {
+        $this->idAssociado = $idAssociado;
+
+        return $this;
+    }
+
+    /**
+     * Get idAssociado
+     *
+     * @return \Pax\Entity\PaxAssociados 
+     */
+    public function getIdAssociado()
+    {
+        return $this->idAssociado;
     }
 }

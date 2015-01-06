@@ -87,7 +87,7 @@ class PaxMovimentoCaixa extends AbstractEntity
      */
     public function setDataMovimento($dataMovimento)
     {
-        $this->dataMovimento = new \DateTime("now");
+        $this->dataMovimento = new \DateTime('now');
 
         return $this;
     }

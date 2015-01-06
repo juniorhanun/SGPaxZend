@@ -7,29 +7,21 @@ use fpdf\FPDF;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-/*
- *******************************************************************************
- *     Gerar um documento em PDF usando a biblioteca FPDF                      *
- *                AUTOR: Winston Hanun Junior                                  *
- *                E-MAIL: hanunjunior@gmail.com                                *
- *                        DATA: 03/01/2015                                     *
- * *****************************************************************************
- */
 class MensalidadeController extends AbstractController
 {
 
     public function __construct()
     {
         $this->form = 'Pax\Form\GrupoMensalidadeForm';
-                $this->controller = 'pax';
-                $this->route = 'pax-mesanlidade/default';
-                $this->service = 'Pax\Service\FuncionariosService';
-                $this->entity = 'Pax\Entity\PaxFuncionarios';
-                $this->itemPorPaigina = 20;
-                $this->campoOrder = "nome";
-                $this->order = "ASC";
-                $this->campoPesquisa = "status";
-                $this->dadoPesquisa = "ATIVO";
+        $this->controller = 'pax';
+        $this->route = 'pax-mesanlidade/default';
+        $this->service = 'Pax\Service\FuncionariosService';
+        $this->entity = 'Pax\Entity\PaxFuncionarios';
+        $this->itemPorPaigina = 20;
+        $this->campoOrder = "nome";
+        $this->order = "ASC";
+        $this->campoPesquisa = "status";
+        $this->dadoPesquisa = "ATIVO";
     }
 
     public function indexAction()
@@ -37,22 +29,10 @@ class MensalidadeController extends AbstractController
         return new ViewModel();
     }
 
-    public function grupoAction()
-    {
-        // Verifica se foi passado um objeto Form, senão ele cria um objeto Form
-                if (is_string($this->form))
-                    $form = new $this->form;
-                else
-                    $form = $this->form;
-
-
-
-                // Instancia o formulario na view
-                return new ViewModel(array('form' => $form));
-    }
 
     public function grupoMensalidadeAction()
     {
+        /*
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetMargins(10, 10, 10);
@@ -84,6 +64,7 @@ class MensalidadeController extends AbstractController
         return $pdf;*/
 
         // Verifica se foi passado um objeto Form, senão ele cria um objeto Form
+        $this->form = $this->getServiceLocator()->get($this->form);
         if (is_string($this->form))
             $form = new $this->form;
         else
@@ -97,21 +78,23 @@ class MensalidadeController extends AbstractController
 
             // Passa os dados vindo pelo post para o Form
             $form->setData($request->getPost());
+            // Passa os dados para a variavel $data
+            $data = $request->getPost()->toArray();
+            //var_dump($data);die("MensalidadeController L 87");
 
             // Verifica se o Formulario e Valido
             if ($form->isValid()){
 
-                // Passa os dados para a variavel $data
-                $data = $request->getPost()->toArray();
-                //var_dump($data);die("MensalidadeController L 53");
-                $associados = $this->getEm()->getRepository("Pax\Entity\PaxAssociados")->AssociadoMensalidade($data['codInicial'],$data['codFinal']);
-                //var_dump($associados);die("MensalidadeController L 55");
+
+
+                $associados = $this->getEm()->getRepository("Pax\Entity\PaxAssociados")->AssociadoMensalidade($data['cobrador']);
+                //var_dump($associados);die("MensalidadeController L 91");
 
                 $dados = array();
                 foreach($associados as $ass):
                     $service = $this->getServiceLocator()->get('Pax\Service\MensalidadeService');
                     $dados['id_associados'] = $ass['id'];
-                    $dados['cobrador'] = $ass['cobrador'];
+                    $dados['cobrador'] = $data['cobrador'];
 
                     $dados['idFuncionarios'] = 1;
                     $dados['mesReferencia'] = $data['mesReferencia'];
@@ -133,6 +116,18 @@ class MensalidadeController extends AbstractController
             }
         }
 
+    }
+
+    public function geraTaxaAction(){
+        // Verifica se foi passado um objeto Form, senão ele cria um objeto Form
+        $this->form = $this->getServiceLocator()->get($this->form);
+        if (is_string($this->form))
+            $form = new $this->form;
+        else
+            $form = $this->form;
+
+        // Instancia o formulario na view
+        return new ViewModel(array('form' => $form));
     }
 
 

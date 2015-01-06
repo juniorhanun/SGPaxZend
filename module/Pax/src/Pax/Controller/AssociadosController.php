@@ -23,13 +23,13 @@ class AssociadosController extends AbstractController
     public function __construct()
     {
         $this->form = 'Pax\Form\AssociadosForm';
-        $this->controller = 'associados';
-        $this->route = 'pax-associados/default';
-        $this->service = 'Pax\Service\AssociadosService';
-        $this->entity = 'Pax\Entity\PaxAssociados';
-        $this->itemPorPaigina = 30;
-        $this->orderCampo = "nome";
-        $this->orderBy = "asc";
+                $this->controller = 'associados';
+                $this->route = 'pax-associados/default';
+                $this->service = 'Pax\Service\AssociadosService';
+                $this->entity = 'Pax\Entity\PaxAssociados';
+                $this->itemPorPaigina = 30;
+                $this->orderCampo = "nome";
+                $this->orderBy = "asc";
     }
 
     /**
@@ -39,29 +39,36 @@ class AssociadosController extends AbstractController
      */
     public function indexAction()
     {
-        $list = $this->getEm()->getRepository($this->entity)->findBy(array('status' => 'ATIVO'),array($this->orderCampo => $this->orderBy));
-        //var_dump($list);die("AssociadosController L 46");
-
-        $page = $this->params()->fromRoute('page');
-
-        $paginator = new Paginator(new ArrayAdapter($list));
-        $paginator->setCurrentPageNumber($page)
-            ->setDefaultItemCountPerPage($this->itemPorPaigina);
-
-        if ($this->flashMessenger()->hasSuccessMessages()){
-            return new ViewModel(array(
-                'data' => $paginator, 'page' => $page,
-                'success' => $this->flashMessenger()->getSuccessMessages()));
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if($id > 0){
+            $list = $this->getEm()->getRepository($this->entity)->findBy(array('id' => '60'),array($this->orderCampo => $this->orderBy));
+        }
+        else {
+            $list = $this->getEm()->getRepository($this->entity)->findBy(array('status' => 'ATIVO'),array($this->orderCampo => $this->orderBy));
         }
 
-        if ($this->flashMessenger()->hasErrorMessages()){
-            return new ViewModel(array(
-                'data' => $paginator, 'page' => $page,
-                'error' => $this->flashMessenger()->getErrorMessages()));
-        }
+                //var_dump($list);die("AssociadosController L 46");
+
+                $page = $this->params()->fromRoute('page');
+
+                $paginator = new Paginator(new ArrayAdapter($list));
+                $paginator->setCurrentPageNumber($page)
+                    ->setDefaultItemCountPerPage($this->itemPorPaigina);
+
+                if ($this->flashMessenger()->hasSuccessMessages()){
+                    return new ViewModel(array(
+                        'data' => $paginator, 'page' => $page,
+                        'success' => $this->flashMessenger()->getSuccessMessages()));
+                }
+
+                if ($this->flashMessenger()->hasErrorMessages()){
+                    return new ViewModel(array(
+                        'data' => $paginator, 'page' => $page,
+                        'error' => $this->flashMessenger()->getErrorMessages()));
+                }
 
 
-        return new ViewModel(array('data' => $paginator, 'page' => $page));
+                return new ViewModel(array('data' => $paginator, 'page' => $page));
     }
 
     /**
@@ -72,6 +79,7 @@ class AssociadosController extends AbstractController
     public function inserirAction()
     {
         // Verifica se foi passado um objeto Form, senão ele cria um objeto Form
+        $this->form = $this->getServiceLocator()->get($this->form);
         if (is_string($this->form))
             $form = new $this->form;
         else
@@ -165,7 +173,7 @@ class AssociadosController extends AbstractController
         $this->flashMessenger()->clearMessages();
 
         return new ViewModel(array('form' => $form,'nomeFuncionario' => $nomeFuncionario));
-    }
+}
 
     /**
      * Método Editar
@@ -175,206 +183,206 @@ class AssociadosController extends AbstractController
     public function editarAction()
     {
         // Verifica se foi passado um objeto Form, senão ele cria um objeto Form
-        if (is_string($this->form))
-            $form = new $this->form;
-        else
-            $form = $this->form;
-
-        // Recebe os dados vendo pela Request(POST,GET)
-        $request = $this->getRequest();
-        // Recebe o Id do Registro
-        $param = $this->params()->fromRoute('id', 0);
-
-        // Retorna os dados da entidade atravez da pesquisa do Id
-        $repository = $this->getEm()->getRepository($this->entity)->find($param);
-
-        // Verifica se foi retornado dados validos da pesquisa
-        if ($repository){
-
-            $array = array();
-            foreach($repository->toArray() as $key => $value){
-                // Verifica se algum dos dados e do tipo DateTime
-                if ($value instanceof \DateTime)
-                    $array[$key] = $value->format('d/m/Y');
+                if (is_string($this->form))
+                    $form = new $this->form;
                 else
-                    $array[$key] = $value;
-            }
+                    $form = $this->form;
 
-            // Passa os dados para o Formulario
-            $form->setData($array);
+                // Recebe os dados vendo pela Request(POST,GET)
+                $request = $this->getRequest();
+                // Recebe o Id do Registro
+                $param = $this->params()->fromRoute('id', 0);
 
-            // Verifica se os dados vieram atravez do Post
-            if ($request->isPost()){
+                // Retorna os dados da entidade atravez da pesquisa do Id
+                $repository = $this->getEm()->getRepository($this->entity)->find($param);
 
-                // Passa os dados para o Formulario
-                $form->setData($request->getPost());
+                // Verifica se foi retornado dados validos da pesquisa
+                if ($repository){
 
-                // Verifica o formulario
-                if ($form->isValid()){
-
-                    // Pega a Instancia do Serviço "Entidade"
-                    $service = $this->getServiceLocator()->get($this->service);
-
-                    // Passa os dados para a variavel $data
-                    $data = $request->getPost()->toArray();
-
-                    // Passa o Id
-                    $data['id'] = (int) $param;
-                    $data['id_funcionarios'] = $this->getEm()->getRepository('Pax\Entity\PaxFuncionarios')->find(1);
-
-                    // Verifica se foi auterado os dados com sucesso na entidade
-                    if ($service->save($data)){
-                        $this->flashMessenger()->addSuccessMessage('Atualizado com sucesso,');
-                    }else{
-                        $this->flashMessenger()->addErrorMessage('Não foi possivel atualizar! Tente mais tarde.');
+                    $array = array();
+                    foreach($repository->toArray() as $key => $value){
+                        // Verifica se algum dos dados e do tipo DateTime
+                        if ($value instanceof \DateTime)
+                            $array[$key] = $value->format('d/m/Y');
+                        else
+                            $array[$key] = $value;
                     }
 
-                    // Redireciona para o Página Editar do Controller, com os Dados ja Auterados
-                    return $this->redirect()
-                        ->toRoute($this->route,
-                            array('controller' => $this->controller,
-                                'action' => 'editar', 'id' => $param));
+                    // Passa os dados para o Formulario
+                    $form->setData($array);
+
+                    // Verifica se os dados vieram atravez do Post
+                    if ($request->isPost()){
+
+                        // Passa os dados para o Formulario
+                        $form->setData($request->getPost());
+
+                        // Verifica o formulario
+                        if ($form->isValid()){
+
+                            // Pega a Instancia do Serviço "Entidade"
+                            $service = $this->getServiceLocator()->get($this->service);
+
+                            // Passa os dados para a variavel $data
+                            $data = $request->getPost()->toArray();
+
+                            // Passa o Id
+                            $data['id'] = (int) $param;
+                            $data['id_funcionarios'] = $this->getEm()->getRepository('Pax\Entity\PaxFuncionarios')->find(1);
+
+                            // Verifica se foi auterado os dados com sucesso na entidade
+                            if ($service->save($data)){
+                                $this->flashMessenger()->addSuccessMessage('Atualizado com sucesso,');
+                            }else{
+                                $this->flashMessenger()->addErrorMessage('Não foi possivel atualizar! Tente mais tarde.');
+                            }
+
+                            // Redireciona para o Página Editar do Controller, com os Dados ja Auterados
+                            return $this->redirect()
+                                ->toRoute($this->route,
+                                    array('controller' => $this->controller,
+                                        'action' => 'editar', 'id' => $param));
+                        }
+
+                    }
+
+                }else{
+                    $this->flashMessenger()->addInfoMessage('Registro não foi encontrado!');
+                    return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
                 }
 
-            }
+                // Verifica se foi retornado alguma mensagem de Sucessos
+                if ($this->flashMessenger()->hasSuccessMessages()){
+                    return new ViewModel(array(
+                        'form' => $form,
+                        'success' => $this->flashMessenger()->getSuccessMessages(),
+                        'id' => $param
+                    ));
+                }
 
-        }else{
-            $this->flashMessenger()->addInfoMessage('Registro não foi encontrado!');
-            return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
-        }
+                // Verifica se foi retornado alguma mensagem de Error
+                if ($this->flashMessenger()->hasErrorMessages()){
+                    return new ViewModel(array(
+                        'form' => $form,
+                        'error' => $this->flashMessenger()->getErrorMessages(),
+                        'id' => $param
+                    ));
+                }
 
-        // Verifica se foi retornado alguma mensagem de Sucessos
-        if ($this->flashMessenger()->hasSuccessMessages()){
-            return new ViewModel(array(
-                'form' => $form,
-                'success' => $this->flashMessenger()->getSuccessMessages(),
-                'id' => $param
-            ));
-        }
+                // Verifica se foi retornado alguma mensagem de Informações
+                if ($this->flashMessenger()->hasInfoMessages()){
+                    return new ViewModel(array(
+                        'form' => $form,
+                        'warning' => $this->flashMessenger()->getInfoMessages(),
+                        'id' => $param
+                    ));
+                }
 
-        // Verifica se foi retornado alguma mensagem de Error
-        if ($this->flashMessenger()->hasErrorMessages()){
-            return new ViewModel(array(
-                'form' => $form,
-                'error' => $this->flashMessenger()->getErrorMessages(),
-                'id' => $param
-            ));
-        }
+                // Limpa as Mensagens
+                $this->flashMessenger()->clearMessages();
 
-        // Verifica se foi retornado alguma mensagem de Informações
-        if ($this->flashMessenger()->hasInfoMessages()){
-            return new ViewModel(array(
-                'form' => $form,
-                'warning' => $this->flashMessenger()->getInfoMessages(),
-                'id' => $param
-            ));
-        }
-
-        // Limpa as Mensagens
-        $this->flashMessenger()->clearMessages();
-
-        // Instancia o Formulario na View
-        return new ViewModel(array('form' => $form, 'id' => $param));
+                // Instancia o Formulario na View
+                return new ViewModel(array('form' => $form, 'id' => $param));
     }
 
     public function detalhesAction()
     {
         //die("AssocidadosController L 243");
-        // filtra id passsado pela url
-        $id = (int) $this->params()->fromRoute('id', 0);
-        // se id = 0 ou n達o informado redirecione para contatos
-        if (!$id) {
-            // adicionar mensagem
-            $this->flashMessenger()->addMessage("Funcionario não encotrado");
+                // filtra id passsado pela url
+                $id = (int) $this->params()->fromRoute('id', 0);
+                // se id = 0 ou n達o informado redirecione para contatos
+                if (!$id) {
+                    // adicionar mensagem
+                    $this->flashMessenger()->addMessage("Funcionario não encotrado");
 
-            // redirecionar para action index
-            return $this->redirect()->toRoute('pax-funcionarios');
-        }
-        try {
-            $list = $this->getEm()->getRepository("Pax\Entity\PaxAssociados")->findBy(array('id' => $id));
-            //var_dump($list);die;
-        } catch (\Exception $exc) {
-            // adicionar mensagem
-            $this->flashMessenger()->addErrorMessage($exc->getMessage());
+                    // redirecionar para action index
+                    return $this->redirect()->toRoute('pax-funcionarios');
+                }
+                try {
+                    $list = $this->getEm()->getRepository("Pax\Entity\PaxAssociados")->findBy(array('id' => $id));
+                    //var_dump($list);die;
+                } catch (\Exception $exc) {
+                    // adicionar mensagem
+                    $this->flashMessenger()->addErrorMessage($exc->getMessage());
 
-            // redirecionar para action index
-            return $this->redirect()->toRoute('pax-funcionarios');
-        }
+                    // redirecionar para action index
+                    return $this->redirect()->toRoute('pax-funcionarios');
+                }
 
-        // dados eviados para detalhes.phtml
-        return new ViewModel(array('data' => $list));
+                // dados eviados para detalhes.phtml
+                return new ViewModel(array('data' => $list));
     }
 
     public function canceladosAction()
     {
         $list = $this->getEm()->getRepository($this->entity)->findBy(array('status' => 'CANCELADO'),array("nome" => "asc"));
-        //var_dump($list);die("list L65");
+                //var_dump($list);die("list L65");
 
-        $page = $this->params()->fromRoute('page');
+                $page = $this->params()->fromRoute('page');
 
-        $paginator = new Paginator(new ArrayAdapter($list));
-        $paginator->setCurrentPageNumber($page)
-            ->setDefaultItemCountPerPage($this->itemPorPaigina);
+                $paginator = new Paginator(new ArrayAdapter($list));
+                $paginator->setCurrentPageNumber($page)
+                    ->setDefaultItemCountPerPage($this->itemPorPaigina);
 
-        if ($this->flashMessenger()->hasSuccessMessages()){
-            return new ViewModel(array(
-                'data' => $paginator, 'page' => $page,
-                'success' => $this->flashMessenger()->getSuccessMessages()));
-        }
+                if ($this->flashMessenger()->hasSuccessMessages()){
+                    return new ViewModel(array(
+                        'data' => $paginator, 'page' => $page,
+                        'success' => $this->flashMessenger()->getSuccessMessages()));
+                }
 
-        if ($this->flashMessenger()->hasErrorMessages()){
-            return new ViewModel(array(
-                'data' => $paginator, 'page' => $page,
-                'error' => $this->flashMessenger()->getErrorMessages()));
-        }
+                if ($this->flashMessenger()->hasErrorMessages()){
+                    return new ViewModel(array(
+                        'data' => $paginator, 'page' => $page,
+                        'error' => $this->flashMessenger()->getErrorMessages()));
+                }
 
 
-        return new ViewModel(array('data' => $paginator, 'page' => $page));
+                return new ViewModel(array('data' => $paginator, 'page' => $page));
     }
 
     public function dependentesAction()
     {
         $list = $this->getEm()->getRepository('Pax\Entity\PaxDependentes')->findBy(array('idAssociado' => $this->params()->fromRoute('id')),array('id' => 'ASC'));
-        $associado = $this->getEm()->getRepository($this->entity)->findBy(array('id' => $this->params()->fromRoute('id')));
-        return new ViewModel(array('associado' => $associado,'data' => $list));
+                $associado = $this->getEm()->getRepository($this->entity)->findBy(array('id' => $this->params()->fromRoute('id')));
+                return new ViewModel(array('associado' => $associado,'data' => $list));
     }
 
     public function pesquisasAction()
     {
         $page = $_GET['page']; // get the requested page
-        $limit = $_GET['rows']; // get how many rows we want to have into the grid
-        $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
-        $sord = $_GET['sord']; // get the direction
-        $searchTerm = $_GET['searchTerm'];
+                $limit = $_GET['rows']; // get how many rows we want to have into the grid
+                $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
+                $sord = $_GET['sord']; // get the direction
+                $searchTerm = $_GET['searchTerm'];
 
-        $associados = $this->getEm()->getRepository($this->entity)->findByNomeLike($searchTerm);
+                $associados = $this->getEm()->getRepository($this->entity)->findByNomeLike($searchTerm);
 
-        $count = count($associados);
+                $count = count($associados);
 
-        if( $count >0 ) {
-            $total_pages = ceil($count/$limit);
-        } else {
-            $total_pages = 0;
-        }
+                if( $count >0 ) {
+                    $total_pages = ceil($count/$limit);
+                } else {
+                    $total_pages = 0;
+                }
 
-        if ($page > $total_pages) $page=$total_pages;
-        $start = $limit*$page - $limit; // do not put $limit*($page - 1)
+                if ($page > $total_pages) $page=$total_pages;
+                $start = $limit*$page - $limit; // do not put $limit*($page - 1)
 
-        $response = null;
-        @$response->page = $page;
-        @$response->total = $total_pages;
-        @$response->records = $count;
-        $i = 0;
-        foreach($associados as $ass):
-            $response->rows[$i]['id']=$ass['id'];
-            $response->rows[$i]['nome']=$ass['nome'];
-            $response->rows[$i]['contrato']=$ass['contrato'];
-            $response->rows[$i]['cod_associado']=$ass['codAssociado'];
-            //var_dump($response);die;
-            $i++;
-        endforeach;
-        echo json_encode($response);
-        return $this->response;
+                $response = null;
+                @$response->page = $page;
+                @$response->total = $total_pages;
+                @$response->records = $count;
+                $i = 0;
+                foreach($associados as $ass):
+                    @$response->rows[$i]['id']=$ass['id'];
+                    @$response->rows[$i]['nome']=$ass['nome'];
+                    @$response->rows[$i]['contrato']=$ass['contrato'];
+                    @$response->rows[$i]['cod_associado']=$ass['codAssociado'];
+                    //var_dump($response);die;
+                    $i++;
+                endforeach;
+                echo json_encode($response);
+                return $this->response;
     }
 
     public function pesquisaAction()
@@ -423,7 +431,6 @@ class AssociadosController extends AbstractController
 
     public function ContratoAction()
     {
-
         $id = (int) $this->params()->fromRoute('id', 0);
         //var_dump($id);die("AssociadosController L 385");
         $list = $this->getEm()->getRepository("Pax\Entity\PaxAssociados")->findBy(array('id' => $id));
@@ -431,7 +438,15 @@ class AssociadosController extends AbstractController
         $viewModel = new ViewModel(array('dados' => $list));
         $viewModel->setTerminal(true);
         return $viewModel;
+    }
 
+    public function associadoAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        //var_dump($id);die("AssociadosController L 385");
+        $list = $this->getEm()->getRepository($this->entity)->findBy(array('id' => '60'),array($this->orderCampo => $this->orderBy));
+        var_dump($list);die();
+        return new ViewModel();
     }
 
 

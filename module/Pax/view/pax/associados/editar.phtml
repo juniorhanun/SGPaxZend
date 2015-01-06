@@ -13,6 +13,7 @@ $form->prepare();
 //$form->setAttribute('action', $this->url('pax-associados/default', array('controller' => 'associados', 'action' => 'inserir')));
 $form->setAttribute('action', $this->url('pax-associados/default', array('controller' => 'associados', 'action' => 'editar', 'id' => $this->id)));
 ?>
+
     <?php // renderiza html <form> com atributos configurados no objeto ?>
     <?php echo $this->form()->openTag($form) ?>
     <div class="panel-body ">
@@ -130,7 +131,7 @@ $form->setAttribute('action', $this->url('pax-associados/default', array('contro
                             ->render($form->get('dia_pagemento'));
                         ?>
                     </div>
-                    <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Serie.:</label>
+                    <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Grupo.:</label>
                     <div class='col-lg-2  col-md-2'>
                         <?php
                         // renderiza html input
@@ -182,7 +183,7 @@ $form->setAttribute('action', $this->url('pax-associados/default', array('contro
                     <div class='col-lg-2  col-md-2'>
                         <?php
                         // renderiza html input
-                        echo $this->formInput($form->get('viajem'));
+                        echo $this->formSelect($form->get('viajem'));
 
                         // renderiza elemento de erro
                         echo $this->formElementErrors()
@@ -199,7 +200,7 @@ $form->setAttribute('action', $this->url('pax-associados/default', array('contro
             <div class='row'>
                 <div class='form-group'>
                     <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Profissão.:</label>
-                    <div class='col-lg-4  col-md-4'>
+                    <div class='col-lg-2  col-md-2'>
                         <?php
                         // renderiza html input
                         echo $this->formInput($form->get('profissao'));
@@ -213,7 +214,7 @@ $form->setAttribute('action', $this->url('pax-associados/default', array('contro
                         ?>
                     </div>
                     <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Religião.:</label>
-                    <div class='col-lg-3  col-md-3'>
+                    <div class='col-lg-2  col-md-2'>
                         <?php
                         // renderiza html input
                         echo $this->formInput($form->get('religiao'));
@@ -224,6 +225,20 @@ $form->setAttribute('action', $this->url('pax-associados/default', array('contro
                             ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
                             ->setMessageCloseString("</small>")
                             ->render($form->get('religiao'));
+                        ?>
+                    </div>
+                    <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Cobrador.:</label>
+                    <div class='col-lg-2  col-md-2'>
+                        <?php
+                        // renderiza html input
+                        echo $this->formSelect($form->get('vendedor'));
+
+                        // renderiza elemento de erro
+                        echo $this->formElementErrors()
+                            ->setMessageOpenFormat("<small class='text-danger'>")
+                            ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
+                            ->setMessageCloseString("</small>")
+                            ->render($form->get('vendedor'));
                         ?>
                     </div>
                 </div>
@@ -535,20 +550,7 @@ $form->setAttribute('action', $this->url('pax-associados/default', array('contro
                             ->render($form->get('translado'));
                         ?>
                     </div>
-                    <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Vendedor.:</label>
-                    <div class='col-lg-4  col-md-4'>
-                        <?php
-                        // renderiza html input
-                        echo $this->formInput($form->get('vendedor'));
 
-                        // renderiza elemento de erro
-                        echo $this->formElementErrors()
-                            ->setMessageOpenFormat("<small class='text-danger'>")
-                            ->setMessageSeparatorString("</small><br/><small class='text-danger'>")
-                            ->setMessageCloseString("</small>")
-                            ->render($form->get('vendedor'));
-                        ?>
-                    </div>
                 </div>
             </div>
 

@@ -44,6 +44,19 @@ class PaxAssociadosRepository extends EntityRepository
         endif;
     }
 
+    public function findByAssociado($id){
+        /**
+         * @var $associados \Pax\Entity\PaxAssociados
+         */
+        $associados = $this->createQueryBuilder('a')
+            ->where('a.id = :b')
+            ->setParameter('b',$id)
+            ->getQuery()
+            ->getResult();
+            return $associados;
+            ;
+    }
+
     public function findByCodAssoiado(){
         /**
          * @var $associados \Pax\Entity\PaxEmpresas
@@ -66,21 +79,20 @@ class PaxAssociadosRepository extends EntityRepository
         return $associados;
     }
 
-    public function AssociadoMensalidade($inicial, $final)
+    public function AssociadoMensalidade($idCobrador)
     {
         /**
          * @var $associados \Pax\Entity\PaxAssociados
          */
         $associados = $this->createQueryBuilder('a')
-            ->where('a.id >= :i1')
-            ->andWhere('a.id <= :f1')
-            ->setParameter('i1', $inicial)
-            ->setParameter('f1', $final)
+            ->where('a.vendedor = :i1')
+            ->setParameter('i1', $idCobrador)
+
             //->setParameters(array('i1', $inicial),array('f1',  $final))
             ->getQuery()
             ->getArrayResult()
             ;
-        //var_dump($associados);die("PaxAssociadoRepository L 65");
+        //var_dump($associados);die("PaxAssociadoRepository L 95");
         return $associados;
 
     }
