@@ -1,0 +1,81 @@
+<a href="<?php echo $this->url('pax-move-caixa/default', array('action' => 'inserir'))?>" class="btn btn-success" title="Novo"><span class="glyphicon glyphicon-plus"></span></a>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            Lista Movimento de Caixa
+        </div>
+    </div>
+</div>
+
+<div class="topo-table">
+    <form class="form-inline" method="post" role="form" action="<?php echo $this->url('pax-move-caixa/default', array('action' => 'pesquisa'))?>">
+        <div class='row'>
+            <div class="form-group">
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Inicio.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <input type="date"class="form-control" name="dataInicial">
+                </div>
+                <label for='inputTelefonePrincipal' class='col-md-1 control-label label_right'>Fim.:</label>
+                <div class='col-lg-4  col-md-4'>
+                    <input type="date"class="form-control" name="dataFinal">
+                </div>
+                <div class='col-lg-1  col-md-1'>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<div class='row'>
+    <div class='form-group'>
+        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Total de Debito.:</label>
+        <div class='col-lg-1 col-md-1'>
+            <?=$this->debito[0][1];?>
+        </div>
+        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Total de Credito.:</label>
+        <div class='col-lg-1 col-md-1 text-danger'>
+            <?=$this->credito[0][1];?>
+        </div>
+        <label for='inputTelefonePrincipal' class='col-md-2 control-label label_right'>Total de Saldo.:</label>
+        <div class='col-lg-1 col-md-1 text-success'>
+            <?php echo $this->debito[0][1] - $this->credito[0][1];?>
+        </div>
+    </div>
+</div>
+<div class="corpo-table">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Data Movimento</th>
+            <th>Nome</th>
+            <th>Discriminação</th>
+            <th>Valor Lançado</th>
+            <th>Cretido / Debito</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php
+        /**
+         * @var $entity \Pax\Entity\PaxMovimentoCaixa
+         */
+        ?>
+        <?php  if ($this->data): ?>
+            <?php foreach ($this->data as $entity): ?>
+                <tr>
+                    <td><?php echo $entity->getId(); ?></td>
+                    <td><?php echo ($entity->getDataMovimento()) ? $entity->getDataMovimento()->format('d/m/Y') : ""; ?></td>
+                    <td><?php echo $entity->getCredor(); ?></td>
+                    <td><?php echo $entity->getDiscriminacao(); ?></td>
+                    <td><?php echo $entity->getValorLancado() ?></td>
+                    <td><?php echo ($entity->getTipo() == 'D') ? "Debito" : "Cretito"; ?></td>
+
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nem um Registro foi Encontrado</p>
+        <?php endif;  ?>
+        </tbody>
+    </table>

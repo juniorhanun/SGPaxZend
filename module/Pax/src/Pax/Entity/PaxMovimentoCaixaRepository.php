@@ -33,4 +33,16 @@ class PaxMovimentoCaixaRepository extends EntityRepository
 
         return $credito;
     }
+
+    public function moviData($dataInicio,$dataFinal){
+        $data = $this->createQueryBuilder('m')
+            ->where('m.dataMovimento >= :d')
+            ->andWhere('m.dataMovimento <= :f')
+            ->setParameter('d',$dataInicio)
+            ->setParameter('f',$dataFinal)
+            ->getQuery()
+            ->getResult();
+        //var_dump($data);die();
+        return $data;
+    }
 }

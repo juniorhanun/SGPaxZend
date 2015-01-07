@@ -98,7 +98,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -121,7 +121,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get dataPagamento
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDataPagamento()
     {
@@ -144,7 +144,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get mesReferencia
      *
-     * @return string 
+     * @return string
      */
     public function getMesReferencia()
     {
@@ -167,7 +167,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get anoReferencia
      *
-     * @return string 
+     * @return string
      */
     public function getAnoReferencia()
     {
@@ -190,7 +190,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get valorMensalidade
      *
-     * @return float 
+     * @return float
      */
     public function getValorMensalidade()
     {
@@ -213,7 +213,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get paga
      *
-     * @return integer 
+     * @return integer
      */
     public function getPaga()
     {
@@ -236,7 +236,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get valorPago
      *
-     * @return float 
+     * @return float
      */
     public function getValorPago()
     {
@@ -259,7 +259,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get diferenca
      *
-     * @return float 
+     * @return float
      */
     public function getDiferenca()
     {
@@ -282,7 +282,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get cobrador
      *
-     * @return string 
+     * @return string
      */
     public function getCobrador()
     {
@@ -305,7 +305,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get idAssociados
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdAssociados()
     {
@@ -328,7 +328,7 @@ class PaxMensalidade extends AbstractEntity
     /**
      * Get idFuncionarios
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdFuncionarios()
     {

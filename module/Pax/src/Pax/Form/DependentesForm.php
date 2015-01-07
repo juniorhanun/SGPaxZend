@@ -95,15 +95,19 @@ class DependentesForm extends Form
         ));
         $this->add($status);
 
-        //Input tipo
-        $tipo = new Text('tipo');
-        $tipo->setLabel('Entre com o Tipo.: ')
+        // Select tipo
+        $tipo = new Select('tipo');
+        $tipo->setLabel('Escolha o tipo.:')
             ->setAttributes(array(
-                'maxlength' => 40,
                 'class' => 'form-control',
                 'id' => 'tipo',
-                'placeholder' => 'Entre com o Tipo.:'
             ));
+        $tipo->setValueOptions(array(
+            'FILHOS(AS)' => 'FILHOS(AS)',
+            'SOGRO' => 'SOGRO',
+            'SOGRA' => 'SOGRA',
+            'CONJUGUE' => 'CONJUGUE',
+        ));
         $this->add($tipo);
 
         //Input data_obito

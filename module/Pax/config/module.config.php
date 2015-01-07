@@ -268,7 +268,7 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Pax\Controller',
                         'controller'    => 'Mensalidade',
-                        'action'        => 'index',
+                        'action'        => 'geraTaxa',
                     ),
                 ),
                 'may_terminate' => true,
@@ -300,6 +300,84 @@ return array(
                             )
                         )
                     )
+                ),
+            ),
+            'pax-baixa' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/app-pax/taxa/baixa',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Pax\Controller',
+                        'controller'    => 'Mensalidade',
+                        'action'        => 'baixa',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '[/:action]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'pax-relatorio' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/app-pax/taxa/baixa',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Pax\Controller',
+                        'controller'    => 'Mensalidade',
+                        'action'        => 'relatorio',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '[/:action]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'pax-gera-relatorio' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/app-pax/taxa/geraRelatorio',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Pax\Controller',
+                        'controller'    => 'Mensalidade',
+                        'action'        => 'geraRelatorio',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '[/:action]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
                 ),
             ),
             'pax-notas' => array(

@@ -60,7 +60,7 @@ class DependentesController extends AbstractController
 
                 $datas['id_funcionarios'] = $this->getEm()->getRepository('Pax\Entity\PaxFuncionarios')->find(1);
                 $id = $datas['id_associado'];
-                //$datas['id_associado'] = $this->getEm()->getRepository('Pax\Entity\PaxAssociados')->find($datas['id_associado']);
+                $datas['id_associado'] = $this->getEm()->getRepository('Pax\Entity\PaxAssociados')->find($datas['id_associado']);
 
                 //var_dump($datas);die("DependentesController L 67");
 

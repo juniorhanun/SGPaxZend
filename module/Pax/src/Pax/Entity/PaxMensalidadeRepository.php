@@ -23,4 +23,25 @@ class PaxMensalidadeRepository extends EntityRepository
         //var_dump($ano);die("PaxMensalidadeRepository L 22");
         return $ano;
     }
+
+    public function mensalidadeId(){
+        $mensalidade = $this->createQueryBuilder('a')
+            ->select('max(a.id)')
+            ->orderBy('a.id', 'desc')
+            ->setMaxResults(1)
+            ->getQuery()->getArrayResult();
+        //var_dump($mensalidade);die();
+        return $mensalidade;
+    }
+
+    public function relatorioMensa($cobrador){
+        $relatorio = $this->createQueryBuilder('r')
+            ->where('r.paga = :a')
+            ->andWhere('r.cobrador = :c')
+            ->setParameter('c',$cobrador)
+            ->setParameter('a',0)
+            ->getQuery()
+            ->getResult();
+        return $relatorio;
+    }
 }

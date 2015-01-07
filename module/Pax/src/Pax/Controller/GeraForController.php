@@ -184,7 +184,19 @@ class GeraForController extends AbstractActionController
                     }else{
                         for($i = 0; $i < 1; $i++)
                         {
-                            echo "INSERT INTO pax_associados (id, id_funcionarios, cidade_asso, nome, contrato, data_contrato, data_pedido, data_nascimento, dia_pagemento, serie, porcento, viajem, estado_civil, profissao, religiao, cep, estado, cidade, bairro, endereco, endereco_cobranca, celular, telefone, local, pai, status_pai, mae, status_mae, conjugue, status_conjugue, cpf, rg, status, translado, observacao, condicao, vendedor, tipo_contrato, nome_sogra, status_sogra, nome_sogro, status_sogro, motivo_cancelamento, tipo_caixao) VALUES (NULL, '1', 'CIDAE DE GOIÁS', '$dados[0]', '$dados[3]', NULL, NULL, NULL, NULL, '$dados[4]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$dados[1]', '$dados[1]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ATIVO', NULL, NULL, NULL, NULL, '$dados[5]', NULL, NULL, NULL, NULL, NULL, NULL);";
+                            $nome = strtoupper(utf8_encode($dados[0]));
+                            $contrato = strtoupper(utf8_encode($dados[3]));
+                            $serie = strtoupper(utf8_encode($dados[4]));
+                            $endereco = strtoupper(utf8_encode($dados[1]));
+                            mysql_query("INSERT INTO pax_associados (
+                                    id, id_funcionarios, cidade_asso, nome, contrato, data_contrato, data_pedido, data_nascimento, dia_pagemento, serie, porcento,
+                                    viajem, estado_civil, profissao, religiao, cep, estado, cidade, bairro, endereco, endereco_cobranca, celular, telefone, local,
+                                    pai, status_pai, mae, status_mae, conjugue, status_conjugue, cpf, rg, status, translado, observacao, condicao, vendedor, tipo_contrato,
+                                     nome_sogra, status_sogra, nome_sogro, status_sogro, motivo_cancelamento, tipo_caixao)
+                                     VALUES
+                                     (NULL, '1', 'CIDAE DE GOIÃS', '$nome', '$contrato', NULL, NULL, NULL, NULL, '$serie', NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                      NULL, NULL, '$endereco', '$endereco', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ATIVO', NULL, NULL, NULL,
+                                       1, '$dados[5]', NULL, NULL, NULL, NULL, NULL, NULL);");
                             //echo $query;
                         }
                         echo "</tr>";

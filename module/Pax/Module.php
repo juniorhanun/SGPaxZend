@@ -6,6 +6,7 @@ use Pax\Form\GrupoMensalidadeForm;
 use Pax\Service\AssociadosService;
 use Pax\Service\DependentesService;
 use Pax\Service\FuncionariosService;
+use Pax\Service\GeraMensalidadeService;
 use Pax\Service\MaterialService;
 use Pax\Service\MensalidadeService;
 use Pax\Service\MovimentoCaixaService;
@@ -109,6 +110,9 @@ class Module
                 },
                 'Pax\Service\MovimentoCaixaService' => function($em){
                     return new MovimentoCaixaService($em->get('Doctrine\ORM\EntityManager'));
+                },
+                'Pax\Service\GeraMensalidadeService' => function($em){
+                    return new GeraMensalidadeService($em->get('Doctrine\ORM\EntityManager'));
                 },
             ),
 

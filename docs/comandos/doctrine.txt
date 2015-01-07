@@ -13,7 +13,7 @@ vendor/bin/doctrine-module orm:convert-mapping --filter="PaxObitos" --from-datab
 vendor/bin/doctrine-module orm:convert-mapping --filter="PaxObitosDespesa" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
 vendor/bin/doctrine-module orm:convert-mapping --filter="PaxServicos" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
 vendor/bin/doctrine-module orm:convert-mapping --filter="PaxUrnas" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
-vendor/bin/doctrine-module orm:convert-mapping --filter="PaxCancelamento" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
+vendor/bin/doctrine-module orm:convert-mapping --filter="PaxGeraMensalidade" --from-database annotation --namespace="Pax\\Entity\\" module/Pax/src/
 
 
 
@@ -32,7 +32,7 @@ vendor/bin/doctrine-module orm:generate-entities --filter="PaxObitos" --generate
 vendor/bin/doctrine-module orm:generate-entities --filter="PaxObitosDespesa" --generate-annotations="true" --generate-methods="true" module/Pax/src
 vendor/bin/doctrine-module orm:generate-entities --filter="PaxServicos" --generate-annotations="true" --generate-methods="true" module/Pax/src
 vendor/bin/doctrine-module orm:generate-entities --filter="PaxUrnas" --generate-annotations="true" --generate-methods="true" module/Pax/src
-vendor/bin/doctrine-module orm:generate-entities --filter="PaxCancelamento" --generate-annotations="true" --generate-methods="true" module/Pax/src
+vendor/bin/doctrine-module orm:generate-entities --filter="PaxGeraMensalidade" --generate-annotations="true" --generate-methods="true" module/Pax/src
 
 Criação dos Repositorios
 Pax
@@ -49,4 +49,4 @@ vendor/bin/doctrine-module orm:generate-repositories --filter="PaxObitos" module
 vendor/bin/doctrine-module orm:generate-repositories --filter="PaxObitosDespesa" module/Pax/src/
 vendor/bin/doctrine-module orm:generate-repositories --filter="PaxServicos" module/Pax/src/
 vendor/bin/doctrine-module orm:generate-repositories --filter="PaxUrnas" module/Pax/src/
-vendor/bin/doctrine-module orm:generate-repositories --filter="PaxCancelamento" module/Pax/src/
+vendor/bin/doctrine-module orm:generate-repositories --filter="PaxGeraMensalidade" module/Pax/src/

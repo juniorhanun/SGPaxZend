@@ -37,4 +37,13 @@ class PaxDependentesRepository extends EntityRepository
         ;
         return $associados;
     }
+
+    public function dependente($id){
+        $dependente = $this->createQueryBuilder('d')
+            ->where('d.idAssociado = :a')
+            ->setParameter('a',$id)
+            ->getQuery()
+            ->getResult();
+        return $dependente;
+    }
 }

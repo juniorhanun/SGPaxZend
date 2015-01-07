@@ -3,6 +3,7 @@
 namespace Pax\Controller;
 
 use Core\Controller\AbstractController;
+use fpdf\FPDF;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Adapter\ArrayAdapter;
 use Zend\Paginator\Paginator;
@@ -128,19 +129,19 @@ class AssociadosController extends AbstractController
                     }
                     if(!$datas['conjugue'] == ""){
                         $dependente['nome'] = $datas['conjugue'];
-                        $dependente['tipo'] = "Conjugue";
+                        $dependente['tipo'] = "CONJUGUE";
                         $dependente['status'] = $datas["status_conjugue"];
                         $serviceDependente->save($dependente);
                     }
                     if(!$datas['nome_sogra'] == ""){
                         $dependente['nome'] = $datas['nome_sogra'];
-                        $dependente['tipo'] = "Sogra";
+                        $dependente['tipo'] = "SOGRA";
                         $dependente['status'] = $datas["status_sogra"];
                         $serviceDependente->save($dependente);
                     }
                     if(!$datas['nome_sogro'] == ""){
                         $dependente['nome'] = $datas['nome_sogro'];
-                        $dependente['tipo'] = "Sogro";
+                        $dependente['tipo'] = "SOGRO";
                         $dependente['status'] = $datas["status_sogro"];
                         $serviceDependente->save($dependente);
                     }
@@ -182,6 +183,7 @@ class AssociadosController extends AbstractController
      */
     public function editarAction()
     {
+        $this->form = $this->getServiceLocator()->get($this->form);
         // Verifica se foi passado um objeto Form, senão ele cria um objeto Form
                 if (is_string($this->form))
                     $form = new $this->form;
@@ -429,11 +431,149 @@ class AssociadosController extends AbstractController
         return new ViewModel(array('data' => $list,'associado' => $associado,'anos' => $anos));
     }
 
-    public function ContratoAction()
+    public function contratoAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         //var_dump($id);die("AssociadosController L 385");
-        $list = $this->getEm()->getRepository("Pax\Entity\PaxAssociados")->findBy(array('id' => $id));
+        $list = $this->getEm()->getRepository($this->entity)->findBy(array('id' => $id));
+        $dependente = $this->getEm()->getRepository("Pax\Entity\PaxDependentes")->dependente(array($this->getEm()->getRepository($this->entity)->findBy(array('id' => $id))));
+        //var_dump($dependente);die();
+        $pdf = new FPDF("P", "mm", "Legal");
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',8);
+        /**
+         * @var $entity \Pax\Entity\PaxAssociados
+         */
+        foreach($list as $entity):
+            //var_dump($entity->getNome());die();
+            //posiciona verticalmente
+            $pdf->SetY(82);
+            //posiciona horizontalmente
+            $pdf->SetX(15);
+            $pdf->Cell(100,5,utf8_decode($entity->getNome()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(90);
+            //posiciona horizontalmente
+            $pdf->SetX(20);
+            $pdf->Cell(87,5,utf8_decode($entity->getCpf()),0,0,'L');
+            $pdf->Cell(75,5,utf8_decode($entity->getSerie()),0,0,'L');
+            $pdf->Cell(10,5,utf8_decode($entity->getContrato()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(96);
+            //posiciona horizontalmente
+            $pdf->SetX(33);
+            $pdf->Cell(150,5,utf8_decode($entity->getEndereco()),0,0,'L');
+            $pdf->Cell(75,5,utf8_decode($entity->getBairro()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(145);
+            //posiciona horizontalmente
+            $pdf->SetX(8);
+            $pdf->Cell(150,5,utf8_decode($entity->getObservacao()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(165);
+            //posiciona horizontalmente
+            $pdf->SetX(8);
+            $pdf->Cell(150,5,utf8_decode($entity->getTipoContrato()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(296);
+            //posiciona horizontalmente
+            $pdf->SetX(148);
+            $pdf->Cell(10,5,utf8_decode($entity->getTranslado()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(334);
+            //posiciona horizontalmente
+            $pdf->SetX(148);
+            $pdf->Cell(10,5,"",0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(0);
+            //posiciona horizontalmente
+            $pdf->SetX(139);
+            $pdf->Cell(10,5,utf8_decode($entity->getCidadeAsso()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(16);
+            //posiciona horizontalmente
+            $pdf->SetX(58);
+            $pdf->Cell(10,5,utf8_decode($entity->getTranslado()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(18);
+            //posiciona horizontalmente
+            $pdf->SetX(128);
+            $pdf->Cell(10,5,utf8_decode($entity->getTranslado()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(90);
+            //posiciona horizontalmente
+            $pdf->SetX(85);
+            $pdf->Cell(10,5,utf8_decode($entity->getContrato()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(103);
+            //posiciona horizontalmente
+            $pdf->SetX(105);
+            $pdf->Cell(10,5,utf8_decode($entity->getTranslado()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(180);
+            //posiciona horizontalmente
+            $pdf->SetX(55);
+            $pdf->Cell(80,5,utf8_decode($entity->getConjugue()),0,0,'L');
+            $filhos = "";
+            foreach($dependente as $dep):
+                /**
+                 * @var $dep \Pax\Entity\PaxDependentes
+                 */
+                $filhos .= $dep->getNome().", ";
+            endforeach;
+            //posiciona verticalmente
+            $pdf->SetY(188);
+            //posiciona horizontalmente
+            $pdf->SetX(50);
+            $pdf->Cell(80,5,utf8_decode($filhos),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(228);
+            //posiciona horizontalmente
+            $pdf->SetX(45);
+            $pdf->Cell(80,5,utf8_decode($entity->getPai()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(236);
+            //posiciona horizontalmente
+            $pdf->SetX(45);
+            $pdf->Cell(80,5,utf8_decode($entity->getMae()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(243);
+            //posiciona horizontalmente
+            $pdf->SetX(45);
+            $pdf->Cell(80,5,utf8_decode($entity->getNomeSogro()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(252);
+            //posiciona horizontalmente
+            $pdf->SetX(45);
+            $pdf->Cell(80,5,utf8_decode($entity->getNomeSogra()),0,0,'L');
+            //posiciona verticalmente
+            $pdf->SetY(260);
+            //posiciona horizontalmente
+            $pdf->SetX(110);
+            $pdf->Cell(10,5,date('d'),0,0,'L');
+            switch(date('m')){
+                case 01: $mes = "Janeiro";break;
+                case 02: $mes = "Fevereiro";break;
+                case 03: $mes = "Março";break;
+                case 04: $mes = "Abril";break;
+                case 05: $mes = "Maio";break;
+                case 06: $mes = "Junho";break;
+                case 07: $mes = "Julho";break;
+                case 08: $mes = "Agosto";break;
+                case 09: $mes = "Setembro";break;
+                case 10: $mes = "Outubro";break;
+                case 11: $mes = "Novenbro";break;
+                case 12: $mes = "Dezenbro";break;
+
+            }
+            $pdf->Cell(40,5,$mes,0,0,'L');
+            $pdf->Cell(10,5,date('Y'),0,0,'L');
+
+
+        endforeach;
+
+
+        $pdf->Output("contrato.pdf","D");
         //var_dump($list);die("AssociadosController L 387");
         $viewModel = new ViewModel(array('dados' => $list));
         $viewModel->setTerminal(true);
