@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PaxGeraMensalidade
  *
- * @ORM\Table(name="pax_gera_mensalidade", indexes={@ORM\Index(name="fk_pax_gera_mensalidade_pax_funcionarios1_idx", columns={"id_funcionarios"})})
+ * @ORM\Table(name="pax_gera_mensalidade", indexes={@ORM\Index(name="fk_pax_gera_mensalidade_pax_funcionarios1_idx", columns={"id_cobrador"})})
  * @ORM\Entity
  */
 class PaxGeraMensalidade
@@ -24,26 +24,33 @@ class PaxGeraMensalidade
     /**
      * @var string
      *
-     * @ORM\Column(name="mes_referencia", type="string", length=45, nullable=true)
+     * @ORM\Column(name="mes_referencia", type="string", length=2, nullable=true)
      */
     private $mesReferencia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ano_referencia", type="string", length=45, nullable=true)
+     * @ORM\Column(name="ano_referencia", type="string", length=4, nullable=true)
      */
     private $anoReferencia;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=true)
+     */
+    private $dataCriacao;
 
     /**
      * @var \Pax\Entity\PaxFuncionarios
      *
      * @ORM\ManyToOne(targetEntity="Pax\Entity\PaxFuncionarios")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_funcionarios", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_cobrador", referencedColumnName="id")
      * })
      */
-    private $idFuncionarios;
+    private $idCobrador;
 
 
 }

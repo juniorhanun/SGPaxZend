@@ -841,7 +841,48 @@ return array(
                         ),
                     ),
                 )
-            )
+            ),
+            'pax-geraMensalidade' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/app-pax/geraMensalidade',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Pax\Controller',
+                        'controller'    => 'GeraMensalidade',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'         => '\d+'
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+'
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => 1
+                            )
+                        )
+                    )
+                ),
+            ),
         ),
     ),
     'controllers' => array(
@@ -864,6 +905,7 @@ return array(
             'Pax\Controller\GeraFor' => 'Pax\Controller\GeraForController',
             'Pax\Controller\Mensalidade' => 'Pax\Controller\MensalidadeController',
             'Pax\Controller\Backup' => 'Pax\Controller\BackupController',
+            'Pax\Controller\GeraMensalidade' => 'Pax\Controller\GeraMensalidadeController',
         ),
     ),
     // Chama a Autenticação

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PaxGeraMensalidade
  *
- * @ORM\Table(name="pax_gera_mensalidade", indexes={@ORM\Index(name="fk_pax_gera_mensalidade_pax_funcionarios1_idx", columns={"id_funcionarios"})})
+ * @ORM\Table(name="pax_gera_mensalidade", indexes={@ORM\Index(name="fk_pax_gera_mensalidade_pax_funcionarios1_idx", columns={"id_cobrador"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Pax\Entity\PaxGeraMensalidadeRepository")
@@ -27,26 +27,33 @@ class PaxGeraMensalidade extends AbstractEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="mes_referencia", type="string", length=45, nullable=true)
+     * @ORM\Column(name="mes_referencia", type="string", length=2, nullable=true)
      */
     private $mesReferencia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ano_referencia", type="string", length=45, nullable=true)
+     * @ORM\Column(name="ano_referencia", type="string", length=4, nullable=true)
      */
     private $anoReferencia;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=true)
+     */
+    private $dataCriacao;
 
     /**
      * @var \Pax\Entity\PaxFuncionarios
      *
      * @ORM\ManyToOne(targetEntity="Pax\Entity\PaxFuncionarios")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_funcionarios", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_cobrador", referencedColumnName="id")
      * })
      */
-    private $idFuncionarios;
+    private $idCobrador;
 
 
 
@@ -107,25 +114,49 @@ class PaxGeraMensalidade extends AbstractEntity
     }
 
     /**
-     * Set idFuncionarios
+     * Set dataCriacao
      *
-     * @param \Pax\Entity\PaxFuncionarios $idFuncionarios
+     * @param \DateTime $dataCriacao
+     * @ORM\PrePersist
      * @return PaxGeraMensalidade
      */
-    public function setIdFuncionarios(\Pax\Entity\PaxFuncionarios $idFuncionarios = null)
+    public function setDataCriacao($dataCriacao)
     {
-        $this->idFuncionarios = $idFuncionarios;
+        $this->dataCriacao = new \DateTime('now');
 
         return $this;
     }
 
     /**
-     * Get idFuncionarios
+     * Get dataCriacao
+     *
+     * @return \DateTime 
+     */
+    public function getDataCriacao()
+    {
+        return $this->dataCriacao;
+    }
+
+    /**
+     * Set idCobrador
+     *
+     * @param \Pax\Entity\PaxFuncionarios $idCobrador
+     * @return PaxGeraMensalidade
+     */
+    public function setIdCobrador(\Pax\Entity\PaxFuncionarios $idCobrador = null)
+    {
+        $this->idCobrador = $idCobrador;
+
+        return $this;
+    }
+
+    /**
+     * Get idCobrador
      *
      * @return \Pax\Entity\PaxFuncionarios 
      */
-    public function getIdFuncionarios()
+    public function getIdCobrador()
     {
-        return $this->idFuncionarios;
+        return $this->idCobrador;
     }
 }
